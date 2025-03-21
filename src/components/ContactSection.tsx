@@ -1,66 +1,117 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, TextField, Button, Paper } from '@mui/material';
+import { 
+  Box, 
+  Container, 
+  Typography, 
+  Grid, 
+  TextField, 
+  Button, 
+  Paper,
+} from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import useContent from '../hooks/useContent';
 
 interface ContactInfoItemProps {
   icon: React.ReactNode;
   title: string;
-  content: string;
+  value: string;
 }
 
-const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ icon, title, content }) => (
+const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ icon, title, value }) => (
   <Box 
     className="contact-info-item"
     sx={{ 
       display: 'flex', 
-      alignItems: 'flex-start', 
-      mb: 3 
+      mb: 4,
+      alignItems: 'flex-start' 
     }}
   >
     <Box 
       className="contact-info-icon-container"
       sx={{ 
-        mr: 2, 
-        color: 'primary.main',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        p: 1.5,
+        width: 50,
+        height: 50,
         borderRadius: '50%',
         backgroundColor: 'rgba(212, 175, 55, 0.1)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        mr: 2,
+        color: 'primary.main'
       }}
     >
       {icon}
     </Box>
     <Box className="contact-info-content">
-      <Typography variant="h6" gutterBottom fontWeight={600} className="contact-info-title">
+      <Typography 
+        variant="subtitle1" 
+        component="h3" 
+        className="contact-info-title"
+        sx={{ 
+          fontWeight: 600,
+          mb: 0.5
+        }}
+      >
         {title}
       </Typography>
-      <Typography variant="body1" color="text.secondary" className="contact-info-text">
-        {content}
+      <Typography 
+        variant="body2" 
+        className="contact-info-value"
+        sx={{ 
+          color: 'text.secondary' 
+        }}
+      >
+        {value}
       </Typography>
     </Box>
   </Box>
 );
 
 const ContactSection: React.FC = () => {
+  const content = useContent();
+  const { overline, title, description, formLabels, contactInfo } = content.contact;
+
+  const getIconForContact = (title: string) => {
+    switch(title.toLowerCase()) {
+      case 'email':
+        return <EmailIcon />;
+      case 'location':
+        return <LocationOnIcon />;
+      case 'working hours':
+        return <AccessTimeIcon />;
+      default:
+        return <EmailIcon />;
+    }
+  };
+
   return (
-    <Box id="contact" className="contact-section" sx={{ py: 10, backgroundColor: 'background.default' }}>
-      <Container maxWidth="lg" className="contact-container">
-        <Box sx={{ mb: 8, textAlign: 'center' }} className="contact-header">
+    <Box 
+      id="contact" 
+      className="contact-section"
+      sx={{ 
+        py: 10, 
+        backgroundColor: 'black',
+        color: 'white'
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box sx={{ textAlign: 'center', mb: 8 }} className="contact-header">
           <Typography 
             variant="overline" 
+            component="div" 
             className="contact-overline"
             sx={{ 
-              color: 'primary.main',
+              color: 'primary.main', 
               fontWeight: 600,
               letterSpacing: 1.5,
+              mb: 1
             }}
           >
-            GET IN TOUCH
+            {overline}
           </Typography>
+          
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }} className="contact-title-container">
             <img 
               src="/images/logo - !f (white - no bg).png" 
@@ -76,179 +127,163 @@ const ContactSection: React.FC = () => {
                 fontWeight: 700,
               }}
             >
-              Contact Us
+              {title}
             </Typography>
           </Box>
+          
           <Typography 
             variant="subtitle1" 
-            className="contact-subtitle"
+            className="contact-description"
             sx={{ 
               maxWidth: 700, 
               mx: 'auto', 
-              color: 'text.secondary',
-              mb: 4
+              mb: 6,
+              color: 'text.secondary'
             }}
           >
-            Let's discuss how we can help bring your blockchain project to life
+            {description}
           </Typography>
         </Box>
         
         <Grid container spacing={6} className="contact-grid">
-          {/* Contact Form */}
-          <Grid item xs={12} md={7} className="contact-form-grid">
+          <Grid item xs={12} md={6} className="contact-form-grid">
             <Paper 
-              className="contact-form-paper"
+              className="contact-form-container"
+              elevation={8}
               sx={{ 
-                p: 4, 
-                borderRadius: 3,
-                boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
+                p: 4,
+                borderRadius: 2,
+                backgroundColor: 'rgba(30, 30, 30, 0.7)',
+                border: '1px solid rgba(212, 175, 55, 0.1)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
               }}
             >
-              <Typography 
-                variant="h5" 
-                component="h3" 
-                gutterBottom 
-                className="contact-form-title"
-                fontWeight={600}
+              <Box 
+                component="form" 
+                className="contact-form"
+                sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
               >
-                Send a Message
-              </Typography>
-              
-              <Box component="form" className="contact-form" sx={{ mt: 3 }}>
-                <Grid container spacing={3} className="contact-form-fields">
-                  <Grid item xs={12} sm={6} className="form-field-name">
-                    <TextField
-                      fullWidth
-                      label="Name"
-                      variant="outlined"
-                      className="contact-form-field contact-name-field"
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} className="form-field-email">
-                    <TextField
-                      fullWidth
-                      label="Email"
-                      variant="outlined"
-                      className="contact-form-field contact-email-field"
-                      type="email"
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} className="form-field-subject">
-                    <TextField
-                      fullWidth
-                      label="Subject"
-                      variant="outlined"
-                      className="contact-form-field contact-subject-field"
-                    />
-                  </Grid>
-                  <Grid item xs={12} className="form-field-message">
-                    <TextField
-                      fullWidth
-                      label="Message"
-                      variant="outlined"
-                      multiline
-                      rows={5}
-                      className="contact-form-field contact-message-field"
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} className="form-field-submit">
-                    <Button 
-                      type="submit" 
-                      variant="contained" 
-                      color="primary"
-                      size="large"
-                      className="contact-form-submit"
-                      sx={{ 
-                        py: 1.5, 
-                        px: 4,
-                        borderRadius: 2,
-                        fontWeight: 600,
-                      }}
-                    >
-                      Send Message
-                    </Button>
-                  </Grid>
-                </Grid>
+                <TextField 
+                  label={formLabels.name}
+                  className="contact-form-name"
+                  variant="outlined" 
+                  fullWidth
+                  sx={{ 
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.2)',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.5)',
+                      },
+                    },
+                  }}
+                />
+                
+                <TextField 
+                  label={formLabels.email}
+                  className="contact-form-email"
+                  variant="outlined" 
+                  type="email" 
+                  fullWidth
+                  sx={{ 
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.2)',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.5)',
+                      },
+                    },
+                  }}
+                />
+                
+                <TextField 
+                  label={formLabels.subject}
+                  className="contact-form-subject"
+                  variant="outlined" 
+                  fullWidth
+                  sx={{ 
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.2)',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.5)',
+                      },
+                    },
+                  }}
+                />
+                
+                <TextField 
+                  label={formLabels.message}
+                  className="contact-form-message"
+                  variant="outlined" 
+                  multiline 
+                  rows={4} 
+                  fullWidth
+                  sx={{ 
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.2)',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: 'rgba(212, 175, 55, 0.5)',
+                      },
+                    },
+                  }}
+                />
+                
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  size="large"
+                  className="contact-form-submit"
+                  sx={{ 
+                    py: 1.5,
+                    alignSelf: 'flex-start',
+                    borderRadius: 2,
+                  }}
+                >
+                  {formLabels.submitButton}
+                </Button>
               </Box>
             </Paper>
           </Grid>
           
-          {/* Contact Information */}
-          <Grid item xs={12} md={5} className="contact-info-grid">
+          <Grid item xs={12} md={6} className="contact-info-grid">
             <Box 
               className="contact-info-container"
               sx={{ 
                 height: '100%',
-                p: { xs: 4, md: 6 },
-                borderRadius: 3,
-                backgroundColor: 'black',
-                color: 'white',
-                boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
+                p: 4,
+                borderRadius: 2,
+                backgroundColor: 'rgba(30, 30, 30, 0.7)',
+                border: '1px solid rgba(212, 175, 55, 0.1)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
               }}
             >
               <Typography 
-                variant="h5" 
+                variant="h4" 
                 component="h3" 
-                gutterBottom 
-                className="contact-info-header"
-                fontWeight={600}
+                className="contact-info-heading"
+                sx={{ 
+                  mb: 4,
+                  fontWeight: 600
+                }}
               >
-                Contact Information
+                Get In Touch
               </Typography>
               
-              <Box sx={{ mt: 4 }} className="contact-info-items">
-                <ContactInfoItem
-                  icon={<EmailIcon />}
-                  title="Email Us"
-                  content="contact@unforkable.com"
-                />
-                <ContactInfoItem
-                  icon={<PhoneIcon />}
-                  title="Call Us"
-                  content="+1 (123) 456-7890"
-                />
-                <ContactInfoItem
-                  icon={<LocationOnIcon />}
-                  title="Location"
-                  content="123 Blockchain Street, San Francisco, CA 94107"
-                />
-              </Box>
-              
-              <Box sx={{ mt: 'auto', pt: 4 }} className="contact-social-container">
-                <Typography 
-                  variant="subtitle2" 
-                  gutterBottom 
-                  className="contact-social-title"
-                  sx={{ opacity: 0.9 }}
-                >
-                  Follow Us On
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 2 }} className="contact-social-icons">
-                  {['Twitter', 'GitHub', 'LinkedIn'].map((platform) => (
-                    <Button 
-                      key={platform} 
-                      variant="outlined"
-                      className={`contact-social-button contact-${platform.toLowerCase()}-button`}
-                      sx={{ 
-                        color: 'white', 
-                        borderColor: 'rgba(212, 175, 55, 0.3)',
-                        '&:hover': {
-                          borderColor: 'primary.main',
-                          backgroundColor: 'rgba(212, 175, 55, 0.1)'
-                        }
-                      }}
-                    >
-                      {platform}
-                    </Button>
-                  ))}
-                </Box>
+              <Box className="contact-info-list">
+                {contactInfo.map((info, index) => (
+                  <ContactInfoItem 
+                    key={index}
+                    icon={getIconForContact(info.title)}
+                    title={info.title}
+                    value={info.value}
+                  />
+                ))}
               </Box>
             </Box>
           </Grid>

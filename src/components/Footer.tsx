@@ -1,108 +1,236 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Link, IconButton } from '@mui/material';
+import { Box, Container, Grid, Typography, Link, IconButton, Divider } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import useContent from '../hooks/useContent';
 
 const Footer: React.FC = () => {
+  const content = useContent();
+  const { about, services, legal, copyright } = content.footer;
+
   return (
-    <Box component="footer" className="footer" sx={{ bgcolor: 'black', color: 'white', py: 6, borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
-      <Container maxWidth="lg" className="footer-container">
+    <Box 
+      component="footer" 
+      className="footer"
+      sx={{ 
+        py: 8, 
+        bgcolor: 'black', 
+        color: 'white',
+        borderTop: '1px solid rgba(212, 175, 55, 0.2)'
+      }}
+    >
+      <Container maxWidth="lg">
         <Grid container spacing={4} className="footer-grid">
-          <Grid item xs={12} md={4} className="footer-brand-grid">
-            <Box sx={{ mb: 2 }} className="footer-logo-container">
-              <img 
-                src="/images/logo - !f (white - no bg).png" 
-                alt="Unforkable Logo Symbol" 
-                style={{ height: '30px', marginRight: '10px' }} 
-              />
-              <img 
-                src="/images/logo - unforkable - white.png" 
-                alt="Unforkable Logo Text" 
-                style={{ height: '25px' }} 
-              />
+          {/* Logo & About */}
+          <Grid item xs={12} md={4} className="footer-about-grid">
+            <Box sx={{ mb: 3 }} className="footer-logo-container">
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <img 
+                  src="/images/logo - !f (white - no bg).png" 
+                  alt="Unforkable Logo Symbol" 
+                  style={{ height: '30px', marginRight: '10px' }} 
+                />
+                <img 
+                  src="/images/logo - unforkable - white.png" 
+                  alt="Unforkable Logo Text" 
+                  style={{ height: '25px' }} 
+                />
+              </Box>
             </Box>
-            <Typography variant="body2" sx={{ mb: 2, maxWidth: '300px' }} className="footer-description">
-              Building the future of Web3 with innovative blockchain solutions and smart contracts.
+            
+            <Typography 
+              variant="h6" 
+              component="h2" 
+              className="footer-about-heading"
+              sx={{ 
+                mb: 2,
+                color: 'primary.main',
+                fontWeight: 600,
+              }}
+            >
+              {about.title}
             </Typography>
-            <Box sx={{ mt: 2 }} className="footer-social-container">
-              <IconButton color="primary" aria-label="Twitter" className="footer-social-button footer-twitter-button">
-                <TwitterIcon className="footer-social-icon" />
+            
+            <Typography 
+              variant="body2" 
+              className="footer-description"
+              sx={{ 
+                mb: 3,
+                color: 'text.secondary',
+                maxWidth: 350
+              }}
+            >
+              {about.description}
+            </Typography>
+            
+            <Box className="footer-social-icons">
+              <IconButton 
+                color="primary"
+                className="footer-social-icon footer-github"
+                aria-label="GitHub"
+                href="https://github.com/unforkableco"
+                target="_blank"
+                sx={{ 
+                  mr: 1,
+                  '&:hover': { 
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
+                  }
+                }}
+              >
+                <GitHubIcon />
               </IconButton>
-              <IconButton color="primary" aria-label="LinkedIn" className="footer-social-button footer-linkedin-button">
-                <LinkedInIcon className="footer-social-icon" />
+              <IconButton 
+                color="primary"
+                className="footer-social-icon footer-twitter"
+                aria-label="Twitter"
+                href="https://twitter.com"
+                target="_blank"
+                sx={{ 
+                  mr: 1,
+                  '&:hover': { 
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
+                  }
+                }}
+              >
+                <TwitterIcon />
               </IconButton>
-              <IconButton color="primary" aria-label="GitHub" className="footer-social-button footer-github-button">
-                <GitHubIcon className="footer-social-icon" />
+              <IconButton 
+                color="primary"
+                className="footer-social-icon footer-linkedin"
+                aria-label="LinkedIn"
+                href="https://linkedin.com"
+                target="_blank"
+                sx={{ 
+                  mr: 1,
+                  '&:hover': { 
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
+                  }
+                }}
+              >
+                <LinkedInIcon />
               </IconButton>
-              <IconButton color="primary" aria-label="Telegram" className="footer-social-button footer-telegram-button">
-                <TelegramIcon className="footer-social-icon" />
+              <IconButton 
+                color="primary"
+                className="footer-social-icon footer-telegram"
+                aria-label="Telegram"
+                href="https://t.me"
+                target="_blank"
+                sx={{ 
+                  '&:hover': { 
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
+                  }
+                }}
+              >
+                <TelegramIcon />
               </IconButton>
             </Box>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={2} className="footer-company-grid">
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: 'primary.main' }} className="footer-heading footer-company-heading">
-              Company
+          {/* Services Links */}
+          <Grid item xs={12} sm={6} md={4} className="footer-services-grid">
+            <Typography 
+              variant="h6" 
+              component="h2" 
+              className="footer-heading footer-services-heading"
+              sx={{ 
+                mb: 3,
+                color: 'primary.main',
+                fontWeight: 600
+              }}
+            >
+              {services.title}
             </Typography>
-            <Box component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }} className="footer-link-list footer-company-links">
-              {['About', 'Team', 'Careers', 'Contact'].map((item) => (
-                <Box component="li" sx={{ mb: 1 }} key={item} className={`footer-link-item footer-company-item-${item.toLowerCase()}`}>
-                  <Link href={`#${item.toLowerCase()}`} color="inherit" underline="hover" className={`footer-link footer-company-${item.toLowerCase()}-link`}
-                    sx={{ 
-                      '&:hover': { 
-                        color: 'primary.main' 
-                      }
-                    }}
-                  >
-                    {item}
-                  </Link>
-                </Box>
+            
+            <Box 
+              className="footer-links footer-services-links"
+              sx={{ 
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5
+              }}
+            >
+              {services.links.map((link, index) => (
+                <Link 
+                  key={index}
+                  href="#services" 
+                  className={`footer-link footer-service-link-${index}`}
+                  sx={{ 
+                    color: 'text.secondary',
+                    textDecoration: 'none',
+                    '&:hover': { 
+                      color: 'primary.main' 
+                    }
+                  }}
+                >
+                  {link}
+                </Link>
               ))}
             </Box>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={2} className="footer-services-grid">
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: 'primary.main' }} className="footer-heading footer-services-heading">
-              Services
+          {/* Legal Links */}
+          <Grid item xs={12} sm={6} md={4} className="footer-legal-grid">
+            <Typography 
+              variant="h6" 
+              component="h2" 
+              className="footer-heading footer-legal-heading"
+              sx={{ 
+                mb: 3,
+                color: 'primary.main',
+                fontWeight: 600
+              }}
+            >
+              {legal.title}
             </Typography>
-            <Box component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }} className="footer-link-list footer-services-links">
-              {['Blockchain', 'Smart Contracts', 'Web3 Apps', 'Consulting'].map((item) => (
-                <Box component="li" sx={{ mb: 1 }} key={item} className={`footer-link-item footer-services-item-${item.toLowerCase().replace(' ', '-')}`}>
-                  <Link href={`#${item.toLowerCase().replace(' ', '-')}`} color="inherit" underline="hover" 
-                    className={`footer-link footer-services-${item.toLowerCase().replace(' ', '-')}-link`}
-                    sx={{ 
-                      '&:hover': { 
-                        color: 'primary.main' 
-                      }
-                    }}
-                  >
-                    {item}
-                  </Link>
-                </Box>
+            
+            <Box 
+              className="footer-links footer-legal-links"
+              sx={{ 
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5
+              }}
+            >
+              {legal.links.map((link, index) => (
+                <Link 
+                  key={index}
+                  href="#" 
+                  className={`footer-link footer-legal-link-${index}`}
+                  sx={{ 
+                    color: 'text.secondary',
+                    textDecoration: 'none',
+                    '&:hover': { 
+                      color: 'primary.main' 
+                    }
+                  }}
+                >
+                  {link}
+                </Link>
               ))}
             </Box>
-          </Grid>
-          
-          <Grid item xs={12} sm={6} md={4} className="footer-contact-grid">
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: 'primary.main' }} className="footer-heading footer-contact-heading">
-              Contact
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 1 }} className="footer-contact-email">
-              info@unforkable.com
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 1 }} className="footer-contact-address">
-              123 Blockchain Avenue, Web3 City
-            </Typography>
           </Grid>
         </Grid>
         
-        <Box sx={{ mt: 5, pt: 2, borderTop: '1px solid rgba(212, 175, 55, 0.2)', textAlign: 'center' }} className="footer-copyright-container">
-          <Typography variant="body2" color="text.secondary" className="footer-copyright">
-            © {new Date().getFullYear()} Unforkable. All rights reserved.
-          </Typography>
-        </Box>
+        <Divider 
+          className="footer-divider"
+          sx={{ 
+            my: 4,
+            borderColor: 'rgba(212, 175, 55, 0.1)',
+          }} 
+        />
+        
+        <Typography 
+          variant="body2" 
+          align="center" 
+          className="footer-copyright"
+          sx={{ 
+            color: 'text.secondary'
+          }}
+        >
+          {copyright}
+        </Typography>
       </Container>
     </Box>
   );

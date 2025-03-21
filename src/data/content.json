@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "title": "Building Blockchain Excellence",
+    "subtitle": "Unforkable specializes in building secure, scalable blockchain solutions and smart contracts for businesses and enterprises.",
+    "primaryButton": "Get Started",
+    "secondaryButton": "Our Services"
+  },
+  "about": {
+    "overline": "ABOUT US",
+    "title": "Why Choose Unforkable?",
+    "description": "Unforkable is a specialized blockchain development agency with deep expertise in decentralized systems and smart contracts. We help businesses leverage blockchain technology to create secure, transparent, and efficient solutions.",
+    "benefits": [
+      "Unforkable engineering expertise in all major blockchain ecosystems",
+      "Strong focus on security and code quality",
+      "Proven track record with complex blockchain projects",
+      "End-to-end development, from concept to deployment",
+      "Ongoing support and maintenance services",
+      "Transparent communication and project management"
+    ]
+  },
+  "services": {
+    "overline": "WHAT WE DO",
+    "title": "What We Offer",
+    "services": [
+      {
+        "title": "Blockchain Development",
+        "description": "We build custom blockchain solutions from scratch, including private chains, public networks, and hybrid systems tailored to your specific needs."
+      },
+      {
+        "title": "Smart Contract Development",
+        "description": "Our engineers develop secure, gas-efficient smart contracts for DeFi, NFTs, DAOs, and other decentralized applications."
+      },
+      {
+        "title": "DApp Development",
+        "description": "We create full-stack decentralized applications with intuitive user interfaces that interact seamlessly with blockchain networks."
+      },
+      {
+        "title": "Security Audits",
+        "description": "Our team conducts comprehensive security audits to identify vulnerabilities and ensure your blockchain solutions are secure and robust."
+      },
+      {
+        "title": "Consulting Services",
+        "description": "We provide expert guidance on blockchain technology selection, architecture design, and implementation strategies."
+      },
+      {
+        "title": "Maintenance & Support",
+        "description": "We offer ongoing maintenance and support to ensure your blockchain solutions remain up-to-date and perform optimally."
+      }
+    ]
+  },
+  "projects": {
+    "overline": "OUR WORK",
+    "title": "Our Projects",
+    "projects": [
+      {
+        "title": "Alchemix Leverager",
+        "description": "Developed a leveraged yield farming system for the Alchemix DeFi protocol, enabling users to maximize returns while maintaining a safety margin through automated liquidation protection.",
+        "technologies": ["Solidity", "Vyper", "Ethereum"]
+      },
+      {
+        "title": "Roko Network",
+        "description": "Built a custom implementation of a Substrate-based blockchain with novel consensus mechanisms and advanced governance features for the Roko Network project.",
+        "technologies": ["Substrate", "Rust", "Polkadot"]
+      },
+      {
+        "title": "Bittensor",
+        "description": "Contributed to the Bittensor network development, implementing advanced AI/ML validation mechanisms within a blockchain framework for decentralized machine learning.",
+        "technologies": ["Substrate", "Rust", "Python", "Tensorflow"]
+      },
+      {
+        "title": "GraphLinq",
+        "description": "Created a customized integration framework for connecting GraphLinq's automation platform with major blockchain networks, enhancing cross-chain compatibility.",
+        "technologies": ["Golang", "Smart Contracts", "Web3"]
+      },
+      {
+        "title": "RenaSwap",
+        "description": "Developed a decentralized exchange platform with advanced trading features, including limit orders, multiple token pair support, and cross-chain bridges.",
+        "technologies": ["Solidity", "React", "Web3.js"]
+      }
+    ],
+    "capabilities": {
+      "title": "Building the Future of Web3",
+      "items": [
+        "Building blockchains from scratch using Substrate, Golang, and other technologies",
+        "Deploying and managing test networks and mainnets",
+        "Comprehensive security implementations and audits",
+        "Server maintenance and infrastructure management",
+        "Blockchain explorer deployment (Blockscout and others)",
+        "Cross-chain bridges and interoperability solutions",
+        "Layer 2 scaling solutions and optimizations",
+        "Advanced smart contract systems and protocols"
+      ]
+    }
+  },
+  "contact": {
+    "overline": "GET IN TOUCH",
+    "title": "Contact Us",
+    "description": "Ready to build your blockchain solution? Contact us today for a consultation.",
+    "formLabels": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submitButton": "Send Message"
+    },
+    "contactInfo": [
+      {
+        "title": "Email",
+        "value": "contact@unforkable.co"
+      },
+      {
+        "title": "Location",
+        "value": "Remote-first, Global Operations"
+      },
+      {
+        "title": "Working Hours",
+        "value": "24/7 Support Available"
+      }
+    ]
+  },
+  "footer": {
+    "about": {
+      "title": "About Unforkable",
+      "description": "Unforkable is a specialized blockchain development agency delivering secure, scalable solutions for businesses worldwide."
+    },
+    "services": {
+      "title": "Services",
+      "links": ["Blockchain Development", "Smart Contracts", "DApp Development", "Security Audits", "Consulting"]
+    },
+    "legal": {
+      "title": "Legal",
+      "links": ["Terms of Service", "Privacy Policy", "Cookie Policy"]
+    },
+    "copyright": "© 2023 Unforkable. All rights reserved."
+  }
+} 

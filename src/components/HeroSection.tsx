@@ -1,7 +1,11 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Grid } from '@mui/material';
+import useContent from '../hooks/useContent';
 
 const HeroSection: React.FC = () => {
+  const content = useContent();
+  const { title, subtitle, primaryButton, secondaryButton } = content.hero;
+
   return (
     <Box 
       id="hero" 
@@ -59,7 +63,7 @@ const HeroSection: React.FC = () => {
                   color: 'text.primary'
                 }}
               >
-                Building Blockchain Excellence
+                {title}
               </Typography>
               
               <Typography 
@@ -74,7 +78,7 @@ const HeroSection: React.FC = () => {
                   color: 'text.secondary'
                 }}
               >
-                Unforkable specializes in building secure, scalable blockchain solutions and smart contracts for businesses and enterprises.
+                {subtitle}
               </Typography>
               
               <Box className="hero-cta-buttons">
@@ -92,7 +96,7 @@ const HeroSection: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  Get Started
+                  {primaryButton}
                 </Button>
                 <Button 
                   variant="outlined" 
@@ -112,7 +116,7 @@ const HeroSection: React.FC = () => {
                     }
                   }}
                 >
-                  Our Services
+                  {secondaryButton}
                 </Button>
               </Box>
             </Box>

@@ -1,71 +1,38 @@
 import React from 'react';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Grid, 
-  Card, 
-  CardContent,
-  CardActions,
-  Button
-} from '@mui/material';
-import CodeIcon from '@mui/icons-material/Code';
-import StorageIcon from '@mui/icons-material/Storage';
-import SecurityIcon from '@mui/icons-material/Security';
-import LanguageIcon from '@mui/icons-material/Language';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import BuildIcon from '@mui/icons-material/Build';
-
-const services = [
-  {
-    title: 'Smart Contract Development',
-    description: 'Custom smart contract development for decentralized applications, token economies, and DeFi protocols.',
-    icon: <CodeIcon fontSize="large" />,
-  },
-  {
-    title: 'Blockchain Architecture',
-    description: 'Design and implementation of blockchain networks, including consensus mechanisms and network topology.',
-    icon: <StorageIcon fontSize="large" />,
-  },
-  {
-    title: 'Security Audits',
-    description: 'Comprehensive security assessment and auditing for blockchain applications and smart contracts.',
-    icon: <SecurityIcon fontSize="large" />,
-  },
-  {
-    title: 'Web3 Integration',
-    description: 'Seamless integration of Web3 technologies with existing platforms and applications.',
-    icon: <LanguageIcon fontSize="large" />,
-  },
-  {
-    title: 'DApp Development',
-    description: 'End-to-end decentralized application development with modern frontend technologies.',
-    icon: <AccountTreeIcon fontSize="large" />,
-  },
-  {
-    title: 'Blockchain Consulting',
-    description: 'Strategic consulting on blockchain implementation, token economics, and regulatory compliance.',
-    icon: <BuildIcon fontSize="large" />,
-  }
-];
+import { Box, Container, Typography, Grid, Paper } from '@mui/material';
+import useContent from '../hooks/useContent';
 
 const ServicesSection: React.FC = () => {
+  const content = useContent();
+  const { overline, title, services } = content.services;
+
   return (
-    <Box id="services" className="services-section" sx={{ py: 10, backgroundColor: 'background.default' }}>
-      <Container maxWidth="lg" className="services-container">
-        <Box sx={{ mb: 8, textAlign: 'center' }} className="services-header">
+    <Box 
+      id="services" 
+      className="services-section"
+      sx={{ 
+        py: 10, 
+        backgroundColor: 'black',
+        color: 'white'
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box sx={{ textAlign: 'center', mb: 8 }} className="services-header">
           <Typography 
             variant="overline" 
+            component="div" 
             className="services-overline"
             sx={{ 
-              color: 'primary.main',
+              color: 'primary.main', 
               fontWeight: 600,
               letterSpacing: 1.5,
+              mb: 1
             }}
           >
-            OUR EXPERTISE
+            {overline}
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2 }} className="services-title-container">
+          
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'center' }} className="services-title-container">
             <img 
               src="/images/logo - !f (orange - no bg).png" 
               alt="Unforkable Logo Symbol" 
@@ -80,77 +47,56 @@ const ServicesSection: React.FC = () => {
                 fontWeight: 700,
               }}
             >
-              What We Offer
+              {title}
             </Typography>
           </Box>
-          <Typography 
-            variant="subtitle1" 
-            className="services-subtitle"
-            sx={{ 
-              maxWidth: 700, 
-              mx: 'auto', 
-              color: 'text.secondary',
-              mb: 4
-            }}
-          >
-            Comprehensive blockchain solutions tailored to your specific needs
-          </Typography>
         </Box>
-
+        
         <Grid container spacing={4} className="services-grid">
           {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index} className={`service-item service-item-${index}`}>
-              <Card 
-                className={`service-card service-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+            <Grid item xs={12} sm={6} md={4} key={index} className={`service-item service-item-${index + 1}`}>
+              <Paper 
+                className="service-card"
+                elevation={6}
                 sx={{ 
-                  height: '100%', 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  overflow: 'hidden',
-                  borderRadius: 3,
-                  boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
-                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                  p: 4, 
+                  height: '100%',
+                  backgroundColor: 'rgba(30, 30, 30, 0.7)',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 16px 70px rgba(212, 175, 55, 0.2)',
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.15)',
+                    backgroundColor: 'rgba(40, 40, 40, 0.8)',
+                    '& .service-title': {
+                      color: 'primary.main'
+                    }
                   },
+                  borderRadius: 2,
+                  border: '1px solid rgba(212, 175, 55, 0.1)',
                 }}
               >
-                <CardContent sx={{ flexGrow: 1, p: 4 }} className="service-content">
-                  <Box 
-                    className="service-icon-container"
-                    sx={{ 
-                      mb: 3, 
-                      color: 'primary.main',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 60,
-                      height: 60,
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                    }}
-                  >
-                    <Box className="service-icon">{service.icon}</Box>
-                  </Box>
-                  <Typography variant="h5" component="h3" gutterBottom className="service-title">
-                    {service.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" className="service-description">
-                    {service.description}
-                  </Typography>
-                </CardContent>
-                <CardActions sx={{ p: 3, pt: 0 }} className="service-actions">
-                  <Button 
-                    color="primary" 
-                    size="small" 
-                    href="#contact"
-                    className="service-learn-more"
-                  >
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
+                <Typography 
+                  variant="h5" 
+                  component="h3" 
+                  className="service-title"
+                  sx={{ 
+                    mb: 2,
+                    fontWeight: 600,
+                    transition: 'color 0.3s ease',
+                  }}
+                >
+                  {service.title}
+                </Typography>
+                <Typography 
+                  variant="body1" 
+                  className="service-description"
+                  sx={{ 
+                    color: 'text.secondary' 
+                  }}
+                >
+                  {service.description}
+                </Typography>
+              </Paper>
             </Grid>
           ))}
         </Grid>

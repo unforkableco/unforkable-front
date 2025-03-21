@@ -1,71 +1,42 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Card, CardContent, Chip, Stack } from '@mui/material';
-
-const projects = [
-  {
-    title: 'Alchemix Leverager',
-    description: 'A leveraged yield farming protocol for the Alchemix ecosystem that allows users to multiply their yields through strategic borrowing and reinvestment.',
-    image: '/images/projects/alchemix-logo.png',
-    technologies: ['Solidity', 'Web3.js', 'React', 'DeFi'],
-  },
-  {
-    title: 'Roko Network',
-    description: 'Built on Substrate, Roko Network is a next-generation blockchain focused on interoperability with advanced consensus mechanisms.',
-    image: '/images/projects/substrate-logo.png',
-    technologies: ['Substrate', 'Rust', 'Polkadot', 'Blockchain'],
-  },
-  {
-    title: 'Bittensor',
-    description: 'A decentralized machine learning network that incentivizes the production of AI models through a unique consensus mechanism and token economics.',
-    image: '/images/projects/bittensor-logo.png',
-    technologies: ['Python', 'Machine Learning', 'Substrate', 'Web3'],
-  },
-  {
-    title: 'GraphLinq',
-    description: 'An automation protocol that allows users to create custom workflows and integrations between different blockchain networks without coding experience.',
-    image: '/images/projects/graphlinq-logo.png',
-    technologies: ['Solidity', 'JavaScript', 'GraphQL', 'Automation'],
-  },
-  {
-    title: 'RenaSwap',
-    description: 'A decentralized exchange focused on cross-chain swaps with minimal slippage and lower fees than traditional DEXs.',
-    image: '/images/projects/uniswap-logo.png',
-    technologies: ['Vyper', 'React', 'DeFi', 'AMM'],
-  },
-];
-
-const capabilities = [
-  'Custom blockchain development from scratch',
-  'Layer 1 and layer 2 solutions design and implementation',
-  'Deployment of test networks and mainnets',
-  'Security auditing and penetration testing',
-  'Smart contract optimization for gas efficiency',
-  'Blockchain explorer and indexing implementation',
-  'Server infrastructure and maintenance',
-  'Cross-chain bridge development',
-];
+import { Box, Container, Typography, Grid, Card, Chip } from '@mui/material';
+import useContent from '../hooks/useContent';
 
 const ProjectsSection: React.FC = () => {
+  const content = useContent();
+  const { overline, title, projects, capabilities } = content.projects;
+
   return (
-    <Box id="projects" className="projects-section" sx={{ py: 10, backgroundColor: 'background.paper' }}>
-      <Container maxWidth="lg" className="projects-container">
-        <Box sx={{ mb: 8, textAlign: 'center' }} className="projects-header">
+    <Box 
+      id="projects" 
+      className="projects-section"
+      sx={{ 
+        py: 10, 
+        backgroundColor: 'black',
+        color: 'white'
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box sx={{ mb: 8 }} className="projects-header">
           <Typography 
             variant="overline" 
+            component="div" 
             className="projects-overline"
             sx={{ 
-              color: 'primary.main',
+              color: 'primary.main', 
               fontWeight: 600,
               letterSpacing: 1.5,
+              mb: 1
             }}
           >
-            OUR PORTFOLIO
+            {overline}
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2 }} className="projects-title-container">
+          
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }} className="projects-title-container">
             <img 
               src="/images/logo - !f (orange - no bg).png" 
-              alt="Unforkable Logo Symbol"
-              className="projects-title-logo" 
+              alt="Unforkable Logo Symbol" 
+              className="projects-title-logo"
               style={{ height: '30px', marginRight: '10px' }} 
             />
             <Typography 
@@ -76,116 +47,169 @@ const ProjectsSection: React.FC = () => {
                 fontWeight: 700,
               }}
             >
-              Our Projects
+              {title}
             </Typography>
           </Box>
-          <Typography 
-            variant="subtitle1"
-            className="projects-subtitle" 
-            sx={{ 
-              maxWidth: 700, 
-              mx: 'auto', 
-              color: 'text.secondary',
-              mb: 4
-            }}
-          >
-            Showcasing our expertise in blockchain development across various platforms and technologies
-          </Typography>
         </Box>
-
+        
         <Grid container spacing={4} className="projects-grid">
           {projects.map((project, index) => (
-            <Grid item xs={12} md={6} key={index} className={`project-item project-item-${index}`}>
+            <Grid item xs={12} md={6} key={index} className={`project-item project-item-${index + 1}`}>
               <Card 
-                className={`project-card project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                className="project-card"
                 sx={{ 
-                  height: '100%', 
-                  display: 'flex', 
-                  flexDirection: 'column',
+                  borderRadius: 2,
                   overflow: 'hidden',
-                  borderRadius: 3,
-                  boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
-                  transition: 'transform 0.3s ease-in-out',
+                  backgroundColor: 'rgba(30, 30, 30, 0.7)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                   '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 16px 70px rgba(212, 175, 55, 0.2)',
+                    transform: 'translateY(-5px)',
+                    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.15)',
                   },
+                  border: '1px solid rgba(212, 175, 55, 0.1)',
                 }}
               >
                 <Box 
                   className="project-image-container"
                   sx={{ 
-                    height: 200,
-                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                    height: 200, 
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: 3
+                    borderBottom: '1px solid rgba(212, 175, 55, 0.1)',
                   }}
                 >
-                  <img
-                    src={project.image}
+                  <Box 
+                    component="img"
+                    src={`/images/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}-logo.png`}
                     alt={`${project.title} Logo`}
-                    className={`project-image project-image-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    style={{ 
-                      maxHeight: '100%', 
-                      maxWidth: '100%',
-                      objectFit: 'contain'
+                    className="project-logo"
+                    sx={{ 
+                      maxWidth: '50%',
+                      maxHeight: '50%',
                     }}
                   />
                 </Box>
-                <CardContent sx={{ flexGrow: 1, p: 3 }} className="project-content">
-                  <Typography variant="h5" component="h3" gutterBottom fontWeight={600} className="project-title">
+                
+                <Box 
+                  className="project-content"
+                  sx={{ 
+                    p: 3,
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Typography 
+                    variant="h5" 
+                    component="h3" 
+                    className="project-title"
+                    sx={{ 
+                      mb: 2,
+                      fontWeight: 600
+                    }}
+                  >
                     {project.title}
                   </Typography>
-                  <Typography variant="body1" color="text.secondary" paragraph className="project-description">
+                  
+                  <Typography 
+                    variant="body2" 
+                    className="project-description"
+                    sx={{ 
+                      mb: 3,
+                      color: 'text.secondary',
+                      flexGrow: 1
+                    }}
+                  >
                     {project.description}
                   </Typography>
-                  <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} className="project-technologies">
-                    {project.technologies.map((tech, techIndex) => (
+                  
+                  <Box className="project-technologies">
+                    {project.technologies.map((tech, i) => (
                       <Chip 
-                        key={techIndex} 
+                        key={i}
                         label={tech}
-                        className={`project-tech-chip project-tech-${tech.toLowerCase().replace(/\//g, '-')}`} 
-                        color="primary" 
-                        size="small" 
+                        className={`project-technology project-technology-${tech.toLowerCase().replace(/\s+/g, '-')}`}
+                        sx={{ 
+                          mr: 1,
+                          mb: 1,
+                          backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                          color: 'primary.main',
+                          borderColor: 'rgba(212, 175, 55, 0.3)',
+                          '&:hover': {
+                            backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                          }
+                        }}
                         variant="outlined"
+                        size="small"
                       />
                     ))}
-                  </Stack>
-                </CardContent>
+                  </Box>
+                </Box>
               </Card>
             </Grid>
           ))}
         </Grid>
         
-        <Box sx={{ mt: 8, p: 4, backgroundColor: 'black', borderRadius: 3, color: 'white', border: '1px solid rgba(212, 175, 55, 0.2)' }} className="capabilities-section">
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }} className="capabilities-title-container">
+        <Box 
+          className="capabilities-section"
+          sx={{ 
+            mt: 10,
+            p: 5,
+            backgroundColor: 'rgba(30, 30, 30, 0.7)',
+            borderRadius: 3,
+            border: '1px solid rgba(212, 175, 55, 0.2)',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 4 }} className="capabilities-title-container">
             <img 
               src="/images/logo - !f (white - no bg).png" 
-              alt="Unforkable Logo Symbol"
-              className="capabilities-logo" 
+              alt="Unforkable Logo Symbol" 
+              className="capabilities-logo"
               style={{ height: '30px', marginRight: '10px' }} 
             />
             <Typography variant="h3" component="h3" className="capabilities-title">
-              Building the Future of Web3
+              {capabilities.title}
             </Typography>
           </Box>
-          <Grid container spacing={2} sx={{ mt: 2 }} className="capabilities-grid">
-            {capabilities.map((capability, index) => (
-              <Grid item xs={12} md={6} key={index} className={`capability-item capability-item-${index}`}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }} className="capability-content">
-                  <Box 
-                    className="capability-bullet"
+          
+          <Grid container spacing={3} className="capabilities-grid">
+            {capabilities.items.map((capability, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index} className={`capability-item capability-item-${index + 1}`}>
+                <Box 
+                  className="capability-box"
+                  sx={{ 
+                    p: 2,
+                    borderRadius: 2,
+                    border: '1px solid rgba(212, 175, 55, 0.1)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      borderColor: 'rgba(212, 175, 55, 0.3)',
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      transform: 'translateY(-2px)'
+                    }
+                  }}
+                >
+                  <Typography 
+                    variant="body2" 
+                    className="capability-text"
                     sx={{ 
-                      width: 8, 
-                      height: 8, 
-                      borderRadius: '50%', 
-                      backgroundColor: 'primary.main', 
-                      mr: 2 
-                    }} 
-                  />
-                  <Typography variant="body1" className="capability-text">{capability}</Typography>
+                      color: 'text.secondary',
+                      textAlign: 'center',
+                      fontWeight: 500
+                    }}
+                  >
+                    {capability}
+                  </Typography>
                 </Box>
               </Grid>
             ))}
