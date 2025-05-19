@@ -85,7 +85,7 @@ const ProjectsSection: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src={`/images/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}-logo.png`}
+                    src={project.logoSrc}
                     alt={`${project.title} Logo`}
                     className="project-logo"
                     sx={{ 

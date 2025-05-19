@@ -30,11 +30,19 @@ export interface Content {
       title: string;
       description: string;
       technologies: string[];
+      logoSrc: string;
     }[];
     capabilities: {
       title: string;
       items: string[];
     };
+  };
+  social: {
+    links: {
+      platform: string;
+      url: string;
+      label: string;
+    }[];
   };
   contact: {
     overline: string;

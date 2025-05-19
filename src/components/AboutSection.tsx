@@ -37,7 +37,7 @@ const AboutSection: React.FC = () => {
             
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }} className="about-title-container">
               <img 
-                src="/images/logo - !f (white - no bg).png" 
+                src="/images/logo - !f (orange - black bg).png" 
                 alt="Unforkable Logo Symbol" 
                 className="about-title-logo"
                 style={{ height: '30px', marginRight: '10px' }} 
@@ -116,7 +116,7 @@ const AboutSection: React.FC = () => {
             >
               <Box 
                 component="img" 
-                src="/images/logo - !f (white - no bg).png"
+                src="/images/logo - !f (orange - black bg).png"
                 alt="Unforkable Logo" 
                 className="about-image-logo"
                 sx={{ 

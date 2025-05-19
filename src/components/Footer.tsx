@@ -1,14 +1,25 @@
 import React from 'react';
 import { Box, Container, Grid, Typography, Link, IconButton, Divider } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TelegramIcon from '@mui/icons-material/Telegram';
 import useContent from '../hooks/useContent';
 
 const Footer: React.FC = () => {
   const content = useContent();
   const { about, services, legal, copyright } = content.footer;
+  const { links: socialLinks } = content.social;
+
+  // Function to get the appropriate icon based on platform name
+  const getSocialIcon = (platform: string) => {
+    switch (platform.toLowerCase()) {
+      case 'github':
+        return <GitHubIcon />;
+      case 'linkedin':
+        return <LinkedInIcon />;
+      default:
+        return <GitHubIcon />;
+    }
+  };
 
   return (
     <Box 
@@ -66,65 +77,24 @@ const Footer: React.FC = () => {
             </Typography>
             
             <Box className="footer-social-icons">
-              <IconButton 
-                color="primary"
-                className="footer-social-icon footer-github"
-                aria-label="GitHub"
-                href="https://github.com/unforkableco"
-                target="_blank"
-                sx={{ 
-                  mr: 1,
-                  '&:hover': { 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
-                  }
-                }}
-              >
-                <GitHubIcon />
-              </IconButton>
-              <IconButton 
-                color="primary"
-                className="footer-social-icon footer-twitter"
-                aria-label="Twitter"
-                href="https://twitter.com"
-                target="_blank"
-                sx={{ 
-                  mr: 1,
-                  '&:hover': { 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
-                  }
-                }}
-              >
-                <TwitterIcon />
-              </IconButton>
-              <IconButton 
-                color="primary"
-                className="footer-social-icon footer-linkedin"
-                aria-label="LinkedIn"
-                href="https://linkedin.com"
-                target="_blank"
-                sx={{ 
-                  mr: 1,
-                  '&:hover': { 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
-                  }
-                }}
-              >
-                <LinkedInIcon />
-              </IconButton>
-              <IconButton 
-                color="primary"
-                className="footer-social-icon footer-telegram"
-                aria-label="Telegram"
-                href="https://t.me"
-                target="_blank"
-                sx={{ 
-                  '&:hover': { 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)' 
-                  }
-                }}
-              >
-                <TelegramIcon />
-              </IconButton>
+              {socialLinks.map((social, index) => (
+                <IconButton 
+                  key={index}
+                  color="primary"
+                  className={`footer-social-icon footer-${social.platform.toLowerCase()}`}
+                  aria-label={social.label}
+                  href={social.url}
+                  target="_blank"
+                  sx={{ 
+                    mr: index < socialLinks.length - 1 ? 1 : 0,
+                    '&:hover': { 
+                      backgroundColor: 'rgba(212, 175, 55, 0.1)' 
+                    }
+                  }}
+                >
+                  {getSocialIcon(social.platform)}
+                </IconButton>
+              ))}
             </Box>
           </Grid>
           

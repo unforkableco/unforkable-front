@@ -1,10 +1,32 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import useContent from '../hooks/useContent';
+import BlockchainIcon from '@mui/icons-material/Storage';
+import SmartContractIcon from '@mui/icons-material/Code';
+import DAppIcon from '@mui/icons-material/Computer';
+import ExplorerIcon from '@mui/icons-material/Explore';
+import BridgeIcon from '@mui/icons-material/CompareArrows';
+import TokenomicsIcon from '@mui/icons-material/LocalAtm';
+import SupportIcon from '@mui/icons-material/Support';
 
 const ServicesSection: React.FC = () => {
   const content = useContent();
   const { overline, title, services } = content.services;
+
+  // Function to get the appropriate icon based on service title
+  const getServiceIcon = (serviceTitle: string) => {
+    const iconMap: Record<string, React.ReactNode> = {
+      'Blockchain Development': <BlockchainIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'Smart Contract Development': <SmartContractIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'DApp Development': <DAppIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'Explorers': <ExplorerIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'Bridge Development': <BridgeIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'Tokenomics': <TokenomicsIcon sx={{ color: 'primary.main', fontSize: 48 }} />,
+      'Maintenance & Support': <SupportIcon sx={{ color: 'primary.main', fontSize: 48 }} />
+    };
+
+    return iconMap[serviceTitle] || null;
+  };
 
   return (
     <Box 
@@ -69,12 +91,32 @@ const ServicesSection: React.FC = () => {
                     backgroundColor: 'rgba(40, 40, 40, 0.8)',
                     '& .service-title': {
                       color: 'primary.main'
+                    },
+                    '& .service-icon': {
+                      transform: 'scale(1.1)',
                     }
                   },
                   borderRadius: 2,
                   border: '1px solid rgba(212, 175, 55, 0.1)',
                 }}
               >
+                <Box 
+                  className="service-icon-container"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    mb: 3
+                  }}
+                >
+                  <Box 
+                    className="service-icon"
+                    sx={{
+                      transition: 'transform 0.3s ease',
+                    }}
+                  >
+                    {getServiceIcon(service.title)}
+                  </Box>
+                </Box>
                 <Typography 
                   variant="h5" 
                   component="h3" 
@@ -83,6 +125,7 @@ const ServicesSection: React.FC = () => {
                     mb: 2,
                     fontWeight: 600,
                     transition: 'color 0.3s ease',
+                    textAlign: 'center'
                   }}
                 >
                   {service.title}
