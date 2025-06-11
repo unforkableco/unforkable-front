@@ -10,7 +10,7 @@
     "title": "Why Choose Unforkable?",
     "description": "Unforkable is a specialized blockchain development agency founded by a team of experienced blockchain engineers in 2022.",
     "benefits": [
-      "Our founders started building crypto back in 2017 and have been involved in many projects since then",
+      "Our founders started software development in the early 2000s and have been building in crypto since 2017, being involved in many projects since then",
       "Trusted advisors that provide care and vision beyond technical expertise",
       "Through us, get in contact with the biggest names in the crypto space",
       "End-to-end development, from concept to deployment and maintenance",
@@ -22,6 +22,10 @@
     "overline": "WHAT WE DO",
     "title": "What We Offer",
     "services": [
+      {
+        "title": "LLM & Automation Services",
+        "deacription": "Everything from building Custom Self-Hosted setups (local llm, realtime db, RAG) over complete n8n workflows with custom tooling to orofessional grade MCP-Servers"
+      },
       {
         "title": "Blockchain Development",
         "description": "We build custom blockchain solutions using bare bone frameworks (substrate, hyperledger, cosmos SDK, etc), including private chains, public networks, and hybrid systems tailored to your specific needs."
@@ -136,7 +140,7 @@
   "contact": {
     "overline": "GET IN TOUCH",
     "title": "Contact Us",
-    "description": "Ready to build your blockchain solution? Contact us today for a consultation.",
+    "description": "Ready to build your blockchain or AI solution? Contact us today for a consultation.",
     "formLabels": {
       "name": "Your Name",
       "email": "Your Email",
