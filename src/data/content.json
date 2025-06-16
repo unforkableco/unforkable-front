@@ -24,7 +24,7 @@
     "services": [
       {
         "title": "Intelligent Agent Platform",
-        "description": "Developed a sophisticated AI agent system with custom personalities, real-time event processing, and automated social media integration using cutting-edge agent frameworks.",
+        "description": "Developed a sophisticated AI agent system with custom personalities, real-time event processing, and automated social media integration using cutting-edge agent frameworks and custom MCP Servers.",
         "technologies": ["ElizaOS", "SmolaAgents", "Supabase", "Edge Functions"],
         "logoSrc": "/images/projects/ai-agent-logo.png"
       },
