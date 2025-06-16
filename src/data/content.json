@@ -30,7 +30,7 @@
       },
       {
         "title": "AI Agent & Automation Services",
-        "description": "We build sophisticated AI agents with custom personalities using ElizaOS and SmolaAgents, intelligent task automation systems with reasoning capabilities, real-time RAG implementations with Supabase and edge functions, and event-driven automation workflows including social media integration."
+        "description": "We build sophisticated AI agents with custom personalities using ElizaOS and SmolaAgents, custom self-hosted LLM setups with real-time databases, complete n8n automation workflows with custom tooling, real-time RAG implementations with Supabase and edge functions, and event-driven automation workflows including social media integration."
       },
       {
         "title": "Blockchain Development",
@@ -119,6 +119,8 @@
       "title": "Building the Future of Web3 & AI",
       "items": [
         "Custom AI agents with reasoning capabilities and personality development",
+        "Self-hosted LLM deployments and custom automation workflows",
+        "Complete n8n automation systems with custom tooling and integrations",
         "Event-driven automation and real-time social media integration",
         "Advanced RAG systems with Supabase and edge function processing",
         "Intelligent scrapers and chatbots with adaptive behavior",
