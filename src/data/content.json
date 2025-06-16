@@ -1,20 +1,21 @@
+```json
 {
   "hero": {
     "title": "Hire a co-founder level of involvement and care",
-    "subtitle": "Unforkable specializes in building blockchain solutions, smart contracts, automation & ai software",
+    "subtitle": "Unforkable specializes in building blockchain solutions, smart contracts, automation & AI software",
     "primaryButton": "Get Started",
     "secondaryButton": "Our Services"
   },
   "about": {
     "overline": "ABOUT US",
     "title": "Why Choose Unforkable?",
-    "description": "Unforkable is a specialized blockchain & ai development agency founded by a team of experienced engineers in 2022.",
+    "description": "Unforkable is a specialized blockchain & AI development agency founded by a team of experienced engineers in 2022.",
     "benefits": [
       "Our founders started software development in the early 2000s and have been building crypto since 2017 with numerous projects and high value clients under the belt since",
       "Trusted advisors that provide care and vision beyond technical expertise",
       "Through us, get in contact with the biggest names in the crypto space",
       "End-to-end development, from concept to deployment and maintenance",
-      "Strainghtforward communication and pricing",
+      "Straightforward communication and pricing",
       "Outstanding project management and communication skills"
     ]
   },
@@ -23,8 +24,14 @@
     "title": "What We Offer",
     "services": [
       {
-        "title": "LLM & Automation Services",
-        "deacription": "Everything from building Custom Self-Hosted setups (local llm, realtime db, RAG) over complete n8n workflows with custom tooling to orofessional grade MCP-Servers"
+        "title": "Intelligent Agent Platform",
+        "description": "Developed a sophisticated AI agent system with custom personalities, real-time event processing, and automated social media integration using cutting-edge agent frameworks.",
+        "technologies": ["ElizaOS", "SmolaAgents", "Supabase", "Edge Functions"],
+        "logoSrc": "/images/projects/ai-agent-logo.png"
+      },
+      {
+        "title": "AI Agent & Automation Services",
+        "description": "We build sophisticated AI agents with custom personalities using ElizaOS and SmolaAgents, intelligent task automation systems with reasoning capabilities, real-time RAG implementations with Supabase and edge functions, and event-driven automation workflows including social media integration."
       },
       {
         "title": "Blockchain Development",
@@ -110,8 +117,13 @@
       }
     ],
     "capabilities": {
-      "title": "Building the Future of Web3",
+      "title": "Building the Future of Web3 & AI",
       "items": [
+        "Custom AI agents with reasoning capabilities and personality development",
+        "Event-driven automation and real-time social media integration",
+        "Advanced RAG systems with Supabase and edge function processing",
+        "Intelligent scrapers and chatbots with adaptive behavior",
+        "Professional-grade MCP servers and AI integrations",
         "Building blockchains from scratch using Substrate, Golang, and other technologies",
         "Deploying and managing test networks and mainnets",
         "Comprehensive security implementations and audits",
@@ -166,11 +178,11 @@
   "footer": {
     "about": {
       "title": "About Unforkable",
-      "description": "Unforkable is a specialized blockchain development agency delivering secure, scalable solutions for businesses worldwide."
+      "description": "Unforkable is a specialized blockchain & AI development agency delivering secure, scalable solutions for businesses worldwide."
     },
     "services": {
       "title": "Services",
-      "links": ["Blockchain Development", "Smart Contracts", "DApp Development", "Security Audits", "Consulting"]
+      "links": ["AI Agents & Automation", "Blockchain Development", "Smart Contracts", "DApp Development", "Security Audits", "Consulting"]
     },
     "legal": {
       "title": "Legal",
@@ -178,4 +190,5 @@
     },
     "copyright": "© 2025 Unforkable. All rights reserved."
   }
-} 
+}
+```
