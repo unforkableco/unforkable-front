@@ -1,20 +1,20 @@
 {
   "hero": {
     "title": "Hire a co-founder level of involvement and care",
-    "subtitle": "Unforkable specializes in building blockchain solutions and smart contracts.",
+    "subtitle": "Unforkable specializes in building blockchain solutions, smart contracts, automation & AI software",
     "primaryButton": "Get Started",
     "secondaryButton": "Our Services"
   },
   "about": {
     "overline": "ABOUT US",
     "title": "Why Choose Unforkable?",
-    "description": "Unforkable is a specialized blockchain development agency founded by a team of experienced blockchain engineers in 2022.",
+    "description": "Unforkable is a specialized blockchain & AI development agency founded by a team of experienced engineers in 2022.",
     "benefits": [
-      "Our founders started building crypto back in 2017 and have been involved in many projects since then",
+      "Our founders started software development in the early 2000s and have been building crypto since 2017 with numerous projects and high value clients under the belt since",
       "Trusted advisors that provide care and vision beyond technical expertise",
       "Through us, get in contact with the biggest names in the crypto space",
       "End-to-end development, from concept to deployment and maintenance",
-      "Strainghtforward communication and pricing",
+      "Straightforward communication and pricing",
       "Outstanding project management and communication skills"
     ]
   },
@@ -22,6 +22,16 @@
     "overline": "WHAT WE DO",
     "title": "What We Offer",
     "services": [
+      {
+        "title": "Intelligent Agent Platform",
+        "description": "Developed a sophisticated AI agent system with custom personalities, real-time event processing, and automated social media integration using cutting-edge agent frameworks and custom MCP Servers.",
+        "technologies": ["ElizaOS", "SmolaAgents", "Supabase", "Edge Functions"],
+        "logoSrc": "/images/projects/ai-agent-logo.png"
+      },
+      {
+        "title": "AI Agent & Automation Services",
+        "description": "We build sophisticated AI agents with custom personalities using ElizaOS and SmolaAgents, custom self-hosted LLM setups with real-time databases, complete n8n automation workflows with custom tooling, real-time RAG implementations with Supabase and edge functions, and event-driven automation workflows including social media integration."
+      },
       {
         "title": "Blockchain Development",
         "description": "We build custom blockchain solutions using bare bone frameworks (substrate, hyperledger, cosmos SDK, etc), including private chains, public networks, and hybrid systems tailored to your specific needs."
@@ -106,8 +116,15 @@
       }
     ],
     "capabilities": {
-      "title": "Building the Future of Web3",
+      "title": "Building the Future of Web3 & AI",
       "items": [
+        "Custom AI agents with reasoning capabilities and personality development",
+        "Self-hosted LLM deployments and custom automation workflows",
+        "Complete n8n automation systems with custom tooling and integrations",
+        "Event-driven automation and real-time social media integration",
+        "Advanced RAG systems with Supabase and edge function processing",
+        "Intelligent scrapers and chatbots with adaptive behavior",
+        "Professional-grade MCP servers and AI integrations",
         "Building blockchains from scratch using Substrate, Golang, and other technologies",
         "Deploying and managing test networks and mainnets",
         "Comprehensive security implementations and audits",
@@ -136,7 +153,7 @@
   "contact": {
     "overline": "GET IN TOUCH",
     "title": "Contact Us",
-    "description": "Ready to build your blockchain solution? Contact us today for a consultation.",
+    "description": "Ready to build your blockchain or AI solution? Contact us today for a consultation.",
     "formLabels": {
       "name": "Your Name",
       "email": "Your Email",
@@ -162,11 +179,11 @@
   "footer": {
     "about": {
       "title": "About Unforkable",
-      "description": "Unforkable is a specialized blockchain development agency delivering secure, scalable solutions for businesses worldwide."
+      "description": "Unforkable is a specialized blockchain & AI development agency delivering secure, scalable solutions for businesses worldwide."
     },
     "services": {
       "title": "Services",
-      "links": ["Blockchain Development", "Smart Contracts", "DApp Development", "Security Audits", "Consulting"]
+      "links": ["AI Agents & Automation", "Blockchain Development", "Smart Contracts", "DApp Development", "Security Audits", "Consulting"]
     },
     "legal": {
       "title": "Legal",
@@ -174,4 +191,4 @@
     },
     "copyright": "© 2025 Unforkable. All rights reserved."
   }
-} 
+}
