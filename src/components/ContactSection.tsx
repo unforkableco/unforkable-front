@@ -4,9 +4,6 @@ import {
   Container, 
   Typography, 
   Grid, 
-  TextField, 
-  Button, 
-  Paper,
 } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -71,7 +68,7 @@ const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ icon, title, value })
 
 const ContactSection: React.FC = () => {
   const content = useContent();
-  const { overline, title, description, formLabels, contactInfo } = content.contact;
+  const { overline, title, description, contactInfo } = content.contact;
 
   const getIconForContact = (title: string) => {
     switch(title.toLowerCase()) {
@@ -112,7 +109,7 @@ const ContactSection: React.FC = () => {
             {overline}
           </Typography>
           
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }} className="contact-title-container">
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'center' }} className="contact-title-container">
             <img 
               src="/images/logo - !f (white - no bg).png" 
               alt="Unforkable Logo Symbol" 
@@ -145,117 +142,11 @@ const ContactSection: React.FC = () => {
           </Typography>
         </Box>
         
-        <Grid container spacing={6} className="contact-grid">
-          <Grid item xs={12} md={6} className="contact-form-grid">
-            <Paper 
-              className="contact-form-container"
-              elevation={8}
-              sx={{ 
-                p: 4,
-                borderRadius: 2,
-                backgroundColor: 'rgba(30, 30, 30, 0.7)',
-                border: '1px solid rgba(212, 175, 55, 0.1)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-              }}
-            >
-              <Box 
-                component="form" 
-                className="contact-form"
-                sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
-              >
-                <TextField 
-                  label={formLabels.name}
-                  className="contact-form-name"
-                  variant="outlined" 
-                  fullWidth
-                  sx={{ 
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.2)',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.5)',
-                      },
-                    },
-                  }}
-                />
-                
-                <TextField 
-                  label={formLabels.email}
-                  className="contact-form-email"
-                  variant="outlined" 
-                  type="email" 
-                  fullWidth
-                  sx={{ 
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.2)',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.5)',
-                      },
-                    },
-                  }}
-                />
-                
-                <TextField 
-                  label={formLabels.subject}
-                  className="contact-form-subject"
-                  variant="outlined" 
-                  fullWidth
-                  sx={{ 
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.2)',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.5)',
-                      },
-                    },
-                  }}
-                />
-                
-                <TextField 
-                  label={formLabels.message}
-                  className="contact-form-message"
-                  variant="outlined" 
-                  multiline 
-                  rows={4} 
-                  fullWidth
-                  sx={{ 
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.2)',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'rgba(212, 175, 55, 0.5)',
-                      },
-                    },
-                  }}
-                />
-                
-                <Button 
-                  variant="contained" 
-                  color="primary" 
-                  size="large"
-                  className="contact-form-submit"
-                  sx={{ 
-                    py: 1.5,
-                    alignSelf: 'flex-start',
-                    borderRadius: 2,
-                  }}
-                >
-                  {formLabels.submitButton}
-                </Button>
-              </Box>
-            </Paper>
-          </Grid>
-          
-          <Grid item xs={12} md={6} className="contact-info-grid">
+        <Grid container justifyContent="center" className="contact-grid">
+          <Grid item xs={12} md={8} lg={6} className="contact-info-grid">
             <Box 
               className="contact-info-container"
               sx={{ 
-                height: '100%',
                 p: 4,
                 borderRadius: 2,
                 backgroundColor: 'rgba(30, 30, 30, 0.7)',
@@ -269,7 +160,8 @@ const ContactSection: React.FC = () => {
                 className="contact-info-heading"
                 sx={{ 
                   mb: 4,
-                  fontWeight: 600
+                  fontWeight: 600,
+                  textAlign: 'center'
                 }}
               >
                 Get In Touch
