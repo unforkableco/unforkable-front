@@ -238,10 +238,7 @@ const ServicesPage: React.FC = () => {
                                 color: 'white'
                               }
                             },
-                            '& .click-indicator': {
-                              opacity: 1,
-                              transform: 'translateY(0)'
-                            },
+
                             '& .hover-glow': {
                               opacity: 0.8
                             }
@@ -287,40 +284,7 @@ const ServicesPage: React.FC = () => {
                           </Box>
                         )}
 
-                        {/* Click Indicator */}
-                        <Box
-                          className="click-indicator"
-                          sx={{
-                            position: 'absolute',
-                            bottom: 16,
-                            right: 16,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 0.5,
-                            padding: '4px 8px',
-                            borderRadius: 2,
-                            backgroundColor: `${currentThemeConfig.primary}20`,
-                            border: `1px solid ${currentThemeConfig.primary}40`,
-                            opacity: 0,
-                            transform: 'translateY(10px)',
-                            transition: 'all 0.3s ease',
-                            zIndex: 2
-                          }}
-                        >
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              color: currentThemeConfig.primary,
-                              fontSize: '0.7rem',
-                              fontWeight: 600,
-                              textTransform: 'uppercase',
-                              letterSpacing: 0.5
-                            }}
-                          >
-                            Click to explore
-                          </Typography>
-                          <ArrowForwardIosIcon sx={{ fontSize: 10, color: currentThemeConfig.primary }} />
-                        </Box>
+
                         
                         <Box sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                           {/* Service Icon */}

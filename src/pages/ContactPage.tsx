@@ -37,7 +37,7 @@ const ContactPage: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ py: 4 }}>
+    <Box sx={{ py: 4, backgroundColor: currentThemeConfig.background, minHeight: '100vh' }}>
       <Container maxWidth="lg">
         {/* Header Section */}
         <Box sx={{ textAlign: 'center', mb: 8, position: 'relative' }}>
@@ -50,7 +50,7 @@ const ContactPage: React.FC = () => {
               transform: 'translateX(-50%)',
               width: '300px',
               height: '60px',
-              backgroundColor: `${currentThemeConfig.background}CC`,
+              backgroundColor: `${currentThemeConfig.paper}CC`,
               border: `1px solid ${currentThemeConfig.primary}60`,
               borderRadius: 1,
               display: 'flex',
@@ -80,7 +80,6 @@ const ContactPage: React.FC = () => {
             sx={{ 
               fontWeight: 800, 
               mb: 3, 
-              color: 'white',
               background: `linear-gradient(135deg, ${currentThemeConfig.textPrimary} 0%, ${currentThemeConfig.primary} 100%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -95,7 +94,7 @@ const ContactPage: React.FC = () => {
           <Typography 
             variant="h5" 
             sx={{ 
-              color: 'text.secondary', 
+              color: currentThemeConfig.textSecondary, 
               maxWidth: 800, 
               mx: 'auto',
               lineHeight: 1.6
@@ -113,15 +112,15 @@ const ContactPage: React.FC = () => {
                 elevation={8}
                 sx={{ 
                   height: '100%',
-                  background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                  border: '1px solid rgba(212, 175, 55, 0.2)',
+                  background: `linear-gradient(135deg, ${currentThemeConfig.paper}E6 0%, ${currentThemeConfig.background}CC 100%)`,
+                  border: `1px solid ${currentThemeConfig.primary}33`,
                   borderRadius: 3,
                   transition: 'all 0.4s ease',
                   cursor: 'pointer',
                   '&:hover': {
                     transform: 'translateY(-8px)',
-                    boxShadow: '0 20px 40px rgba(212, 175, 55, 0.2)',
-                    borderColor: 'primary.main',
+                    boxShadow: `0 20px 40px ${currentThemeConfig.primary}40`,
+                    borderColor: currentThemeConfig.primary,
                     '& .contact-icon': {
                       transform: 'scale(1.1) rotate(5deg)',
                     }
@@ -137,19 +136,19 @@ const ContactPage: React.FC = () => {
                       height: 80,
                       mx: 'auto',
                       mb: 3,
-                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                      border: '2px solid rgba(212, 175, 55, 0.3)',
+                      backgroundColor: `${currentThemeConfig.primary}20`,
+                      border: `2px solid ${currentThemeConfig.primary}50`,
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    {React.cloneElement(method.icon, { sx: { fontSize: 40, color: 'primary.main' } })}
+                    {React.cloneElement(method.icon, { sx: { fontSize: 40, color: currentThemeConfig.primary } })}
                   </Avatar>
                   
                   <Typography 
                     variant="h5" 
                     sx={{ 
                       fontWeight: 600, 
-                      color: 'primary.main', 
+                      color: currentThemeConfig.primary, 
                       mb: 1 
                     }}
                   >
@@ -159,7 +158,7 @@ const ContactPage: React.FC = () => {
                   <Typography 
                     variant="h6" 
                     sx={{ 
-                      color: 'white',
+                      color: currentThemeConfig.textPrimary,
                       mb: 2,
                       fontWeight: 500
                     }}
@@ -170,7 +169,7 @@ const ContactPage: React.FC = () => {
                   <Typography 
                     variant="body1" 
                     sx={{ 
-                      color: 'text.secondary',
+                      color: currentThemeConfig.textSecondary,
                       lineHeight: 1.6
                     }}
                   >
@@ -186,8 +185,8 @@ const ContactPage: React.FC = () => {
         <Card 
           elevation={12}
           sx={{ 
-            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(20,20,20,0.9) 100%)',
-            border: '2px solid rgba(212, 175, 55, 0.3)',
+            background: `linear-gradient(135deg, ${currentThemeConfig.primary}20 0%, ${currentThemeConfig.paper}E6 100%)`,
+            border: `2px solid ${currentThemeConfig.primary}50`,
             borderRadius: 4,
             p: 6,
             textAlign: 'center',
@@ -204,7 +203,7 @@ const ContactPage: React.FC = () => {
               width: 200,
               height: 200,
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+              background: `radial-gradient(circle, ${currentThemeConfig.primary}20 0%, transparent 70%)`,
               zIndex: 1
             }}
           />
@@ -216,11 +215,11 @@ const ContactPage: React.FC = () => {
                 height: 100,
                 mx: 'auto',
                 mb: 4,
-                backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                border: '3px solid rgba(212, 175, 55, 0.5)'
+                backgroundColor: `${currentThemeConfig.primary}30`,
+                border: `3px solid ${currentThemeConfig.primary}80`
               }}
             >
-              <RocketLaunchIcon sx={{ fontSize: 50, color: 'primary.main' }} />
+              <RocketLaunchIcon sx={{ fontSize: 50, color: currentThemeConfig.primary }} />
             </Avatar>
             
             <Typography 
@@ -228,7 +227,7 @@ const ContactPage: React.FC = () => {
               sx={{ 
                 fontWeight: 700, 
                 mb: 3, 
-                color: 'white'
+                color: currentThemeConfig.textPrimary
               }}
             >
               Let's Ship Something Cool
@@ -237,7 +236,7 @@ const ContactPage: React.FC = () => {
             <Typography 
               variant="h6" 
               sx={{ 
-                color: 'text.secondary', 
+                color: currentThemeConfig.textSecondary, 
                 mb: 4,
                 maxWidth: 600,
                 mx: 'auto',
@@ -257,8 +256,8 @@ const ContactPage: React.FC = () => {
               elevation={4}
               sx={{ 
                 p: 4,
-                background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                background: `linear-gradient(135deg, ${currentThemeConfig.paper}E6 0%, ${currentThemeConfig.background}CC 100%)`,
+                border: `1px solid ${currentThemeConfig.primary}33`,
                 borderRadius: 3
               }}
             >
@@ -266,7 +265,7 @@ const ContactPage: React.FC = () => {
                 variant="h5" 
                 sx={{ 
                   fontWeight: 600, 
-                  color: 'primary.main', 
+                  color: currentThemeConfig.primary, 
                   mb: 3 
                 }}
               >
@@ -274,23 +273,23 @@ const ContactPage: React.FC = () => {
               </Typography>
               
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Quick Response:</strong> We'll get back to you within 24 hours
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Quick Response:</strong> We'll get back to you within 24 hours
                 </Typography>
               </Box>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Initial Consultation:</strong> Project assessment and technical discussion
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Initial Consultation:</strong> Project assessment and technical discussion
                 </Typography>
               </Box>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Detailed Proposal:</strong> Comprehensive project plan and timeline
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Detailed Proposal:</strong> Comprehensive project plan and timeline
                 </Typography>
               </Box>
               <Box>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Ongoing Support:</strong> Dedicated technical partnership
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Ongoing Support:</strong> Dedicated technical partnership
                 </Typography>
               </Box>
             </Card>
@@ -301,8 +300,8 @@ const ContactPage: React.FC = () => {
               elevation={4}
               sx={{ 
                 p: 4,
-                background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                background: `linear-gradient(135deg, ${currentThemeConfig.paper}E6 0%, ${currentThemeConfig.background}CC 100%)`,
+                border: `1px solid ${currentThemeConfig.primary}33`,
                 borderRadius: 3
               }}
             >
@@ -310,7 +309,7 @@ const ContactPage: React.FC = () => {
                 variant="h5" 
                 sx={{ 
                   fontWeight: 600, 
-                  color: 'primary.main', 
+                  color: currentThemeConfig.primary, 
                   mb: 3 
                 }}
               >
@@ -318,23 +317,23 @@ const ContactPage: React.FC = () => {
               </Typography>
               
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Startups:</strong> Need technical co-founder expertise
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Startups:</strong> Need technical co-founder expertise
                 </Typography>
               </Box>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Enterprises:</strong> Exploring blockchain adoption
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Enterprises:</strong> Exploring blockchain adoption
                 </Typography>
               </Box>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Investors:</strong> Technical due diligence needed
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Investors:</strong> Technical due diligence needed
                 </Typography>
               </Box>
               <Box>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Projects:</strong> Scaling existing blockchain solutions
+                <Typography variant="body1" sx={{ color: currentThemeConfig.textSecondary, lineHeight: 1.6 }}>
+                  • <strong style={{ color: currentThemeConfig.textPrimary }}>Projects:</strong> Scaling existing blockchain solutions
                 </Typography>
               </Box>
             </Card>

@@ -56,7 +56,7 @@ const AboutPage: React.FC = () => {
               }}
             >
               <img 
-                src="/images/logo - !f (orange - black bg).png" 
+                src="/images/logo - !f (orange - no bg).png" 
                 alt="Unforkable Logo" 
                 style={{ 
                   width: '80%', 
