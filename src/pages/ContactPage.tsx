@@ -5,6 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import useContent from '../hooks/useContent';
+import LinkedInSection from '../components/LinkedInSection';
 
 const ContactPage: React.FC = () => {
   const content = useContent();
@@ -358,6 +359,11 @@ const ContactPage: React.FC = () => {
             </Card>
           </Grid>
         </Grid>
+
+        {/* LinkedIn Connect Section */}
+        <Box sx={{ mt: 8 }}>
+          <LinkedInSection variant="compact" />
+        </Box>
       </Container>
     </Box>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Card, Chip } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import useContent from '../hooks/useContent';
+import LinkedInSection from '../components/LinkedInSection';
 
 const AboutPage: React.FC = () => {
   const content = useContent();
@@ -243,6 +244,9 @@ const AboutPage: React.FC = () => {
           </Card>
         </Box>
       </Container>
+
+      {/* LinkedIn Integration Section */}
+      <LinkedInSection />
     </Box>
   );
 };
