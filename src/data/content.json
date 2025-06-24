@@ -8,13 +8,14 @@
   "about": {
     "overline": "WHO WE ARE",
     "title": "Why We're Different",
-    "description": "We joined the crypto revolution back in 2016, diving deep into Ethereum when smart contracts were still experimental. What started as weekend hackathons building analytics tools and small smart contracts evolved into something bigger. As hobbyists turned serious builders, we contributed to countless projects across the ecosystem, learning from every deployment and every bug. By 2021, we'd caught the attention of major players in DeFi - leading us to formalize Unforkable and take on the sophisticated infrastructure projects that define today's decentralized finance landscape. Our genuine love for decentralization and unwavering commitment to our clients has made us the silent partners behind many of the ecosystem's most innovative builders. We're not just service providers - we're crypto natives who've lived through every market cycle and emerged stronger.",
+    "description": "We joined the crypto revolution back in 2016, diving deep into Ethereum when smart contracts were still experimental. What started as weekend hackathons building analytics tools and small smart contracts evolved into something bigger. As hobbyists turned serious builders, we contributed to countless projects across the ecosystem, learning from every deployment and every bug. By 2021, we'd caught the attention of major players in DeFi - leading us to formalize Unforkable and take on the sophisticated infrastructure projects that define today's decentralized finance landscape. Our genuine love for decentralization and unwavering commitment to our clients has made us the silent partners behind many of the ecosystem's most innovative builders. We're not just service providers - we're crypto natives who've lived through every market cycle and emerged stronger, now expanding into AI automation and intelligent agent systems.",
     "benefits": [
       "Crypto natives who've been building since ETH was $300",
       "Zero hack record with proper security testing and incident response",
       "We manage live validator networks and handle real-time monitoring",
       "Built lending protocols, rebasing vaults, oracle systems, and automated trading",
       "Advanced architectural patterns: UUPS proxies, factory systems, strategy patterns",
+      "Sophisticated AI agents with custom personalities and automation workflows",
       "Weekly dev reports and structured project management since day one",
       "We've survived multiple bear markets and network attacks"
     ]
@@ -23,6 +24,10 @@
     "overline": "WHAT WE BUILD",
     "title": "What We Actually Do",
     "services": [
+      {
+        "title": "AI Agent & Automation Services",
+        "description": "Sophisticated AI agents with custom personalities using ElizaOS and SmolaAgents. Custom self-hosted LLM setups with real-time databases, complete n8n automation workflows with custom tooling, real-time RAG implementations with Supabase and edge functions, and event-driven automation workflows including social media integration."
+      },
       {
         "title": "Custom Blockchain Development",
         "description": "Advanced Substrate blockchains with custom pallets, wrapped token economics, and EVM precompiles. We build everything from governance-controlled deployment systems to nanosecond-precision timing networks with hardware security integration."
@@ -66,6 +71,22 @@
     "title": "Real Projects, Real Results",
     "projects": [
       {
+        "title": "Intelligent Agent Platform",
+        "description": "Sophisticated AI agent system with custom personalities, real-time event processing, and automated social media integration using cutting-edge agent frameworks and custom MCP Servers. Built with ElizaOS and SmolaAgents for advanced conversational AI capabilities.",
+        "technologies": ["ElizaOS", "SmolaAgents", "Supabase", "Edge Functions", "n8n", "RAG", "LLM"],
+        "logoSrc": "/images/projects/ai-agent-logo.png",
+        "keyFeatures": [
+          "Custom AI personalities with advanced conversational capabilities",
+          "Real-time event processing and automated responses",
+          "Social media integration with automated posting and engagement",
+          "Custom MCP (Model Context Protocol) Servers for enhanced functionality",
+          "Self-hosted LLM setups with real-time database integration",
+          "n8n automation workflows with custom tooling and integrations",
+          "Real-time RAG implementations using Supabase and edge functions",
+          "Event-driven automation workflows for complex business logic"
+        ]
+      },
+      {
         "title": "Roko Network",
         "description": "Advanced Layer 1 blockchain with custom Substrate architecture featuring wrapped token economics, governance-controlled contract deployment, and nanosecond-precision timing roadmap. Complete from-scratch development with custom pallets and EVM integration.",
         "technologies": ["Substrate", "Rust", "EVM Precompiles", "Custom Pallets", "Wrapped Tokens"],
@@ -77,6 +98,20 @@
           "Enhanced staking system using wrapped tokens",
           "Circuit breaker security patterns and slashing coordination",
           "Future Timebeat system for nanosecond precision timing"
+        ]
+      },
+      {
+        "title": "Bittensor Network",
+        "description": "Contributed to the Bittensor decentralized AI network development, focusing on machine learning integration, AI marketplace functionality, and network consensus mechanisms for distributed AI training and inference.",
+        "technologies": ["Substrate", "Rust", "Python", "TensorFlow", "PyTorch", "AI/ML"],
+        "logoSrc": "/images/projects/bittensor-logo.png",
+        "keyFeatures": [
+          "AI network development with decentralized machine learning",
+          "Custom consensus mechanisms for AI training validation",
+          "Machine learning model integration and optimization",
+          "Decentralized AI marketplace infrastructure",
+          "Distributed training and inference systems",
+          "Network incentive mechanisms for AI contributors"
         ]
       },
       {
@@ -191,7 +226,17 @@
         "Solidity",
         "Rust",
         "TypeScript",
+        "Python",
         "DeFi Protocols",
+        "AI Agents",
+        "ElizaOS",
+        "SmolaAgents",
+        "LLM Integration",
+        "RAG Systems",
+        "n8n Automation",
+        "Machine Learning",
+        "TensorFlow",
+        "PyTorch",
         "Lending Systems",
         "Oracle Integration",
         "Chainlink",
@@ -229,7 +274,10 @@
         "React/Vue",
         "AWS/Docker",
         "Monitoring",
-        "Incident Response"
+        "Incident Response",
+        "Event Processing",
+        "Social Media APIs",
+        "Custom MCP Servers"
       ]
     }
   },
@@ -276,11 +324,11 @@
   "footer": {
     "about": {
       "title": "About Unforkable",
-      "description": "Unforkable S.A.R.L is a Luxembourg-based blockchain development agency specializing in custom Substrate chains, smart contracts, and DeFi protocols."
+      "description": "Unforkable S.A.R.L is a Luxembourg-based blockchain development agency specializing in custom Substrate chains, smart contracts, DeFi protocols, and AI automation systems."
     },
     "services": {
       "title": "Services",
-      "links": ["Custom Blockchains", "Smart Contracts", "DeFi Protocols", "NFT Platforms", "Blockchain Migration"]
+      "links": ["AI Agents & Automation", "Custom Blockchains", "Smart Contracts", "DeFi Protocols", "NFT Platforms", "Blockchain Migration"]
     },
     "legal": {
       "title": "Legal",

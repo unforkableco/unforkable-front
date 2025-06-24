@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Card, CardContent, Button, Chip, Avatar } from '@mui/material';
+import { Box, Container, Typography, Grid, Card, CardContent, Button, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import SecurityIcon from '@mui/icons-material/Security';
@@ -297,7 +297,7 @@ const HomePage: React.FC = () => {
                     { tech: 'Substrate', pos: { top: '15%', left: '15%' }, delay: '0s' },
                     { tech: 'Solidity', pos: { top: '20%', right: '15%' }, delay: '0.5s' },
                     { tech: 'DeFi', pos: { bottom: '25%', left: '10%' }, delay: '1s' },
-                    { tech: 'Rust', pos: { bottom: '20%', right: '10%' }, delay: '1.5s' },
+                    { tech: 'AI Agents', pos: { bottom: '20%', right: '10%' }, delay: '1.5s' },
                     { tech: 'React', pos: { bottom: '10%', left: '25%' }, delay: '2s' },
                     { tech: 'Web3', pos: { top: '5%', left: '65%' }, delay: '2.5s' },
                   ].map((node, index) => (
@@ -341,9 +341,9 @@ const HomePage: React.FC = () => {
 
                   {/* Additional smaller nodes */}
                   {[
-                    { tech: 'TS', pos: { top: '40%', left: '5%' }, size: '40px' },
-                    { tech: 'AWS', pos: { top: '60%', right: '5%' }, size: '40px' },
-                    { tech: 'ETH', pos: { top: '35%', right: '30%' }, size: '40px' },
+                    { tech: 'Python', pos: { top: '40%', left: '5%' }, size: '40px' },
+                    { tech: 'LLM', pos: { top: '60%', right: '5%' }, size: '40px' },
+                    { tech: 'Rust', pos: { top: '35%', right: '30%' }, size: '40px' },
                   ].map((node, index) => (
                     <Box
                       key={`small-${index}`}
@@ -380,147 +380,299 @@ const HomePage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* Quick Overview Cards */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Typography 
-          variant="h3" 
-          align="center" 
-          sx={{ 
-            fontWeight: 700, 
-            mb: 6, 
-            color: 'white',
-            background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
-        >
-          Why Choose Unforkable?
-        </Typography>
-        
-        <Grid container spacing={4}>
-          {[
-            {
-              title: content.services.overline,
-              description: 'Custom blockchains, DeFi protocols, AI automation. Real code, real results.',
-              image: '/images/logo - !f (orange - black bg).png',
-              path: '/services',
-              color: 'rgba(212, 175, 55, 0.1)',
-              code: 'fn deploy_chain() -> Result<(), Error>'
-            },
-            {
-              title: content.projects.overline,
-              description: 'From Substrate chains to DeFi protocols handling millions in TVL.',
-              image: '/images/logo - !f (orange - black bg).png',
-              path: '/projects',
-              color: 'rgba(212, 175, 55, 0.1)',
-              code: 'git log --oneline | wc -l // 1000+'
-            },
-            {
-              title: content.about.overline,
-              description: 'Crypto natives who\'ve been building since ETH was $300.',
-              image: '/images/logo - !f (orange - black bg).png',
-              path: '/about',
-              color: 'rgba(212, 175, 55, 0.1)',
-              code: 'since(2017).building().still_here()'
+      {/* The Unforkable Difference - Interactive Timeline */}
+      <Box sx={{ py: 10, position: 'relative', overflow: 'hidden' }}>
+        {/* Background Pattern */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0.1) 100%)',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundImage: `
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)
+              `,
             }
-          ].map((card, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Card 
-                elevation={8}
-                sx={{ 
-                  height: '100%',
-                  background: `linear-gradient(135deg, ${card.color} 0%, rgba(20,20,20,0.9) 100%)`,
-                  border: '1px solid rgba(212, 175, 55, 0.2)',
-                  borderRadius: 3,
-                  transition: 'all 0.4s ease',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 20px 40px rgba(212, 175, 55, 0.2)',
-                    borderColor: 'primary.main'
-                  }
+          }}
+        />
+        
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                fontWeight: 800, 
+                mb: 3, 
+                color: 'white',
+                background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              The Unforkable Journey
+            </Typography>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: 'text.secondary', 
+                maxWidth: 600, 
+                mx: 'auto',
+                fontWeight: 400
+              }}
+            >
+              From first smart contract to sophisticated DeFi infrastructure - here's how we got here
+            </Typography>
+          </Box>
+
+          {/* Interactive Timeline */}
+          <Box sx={{ position: 'relative' }}>
+            {/* Central Timeline Line */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '50%',
+                top: 0,
+                bottom: 0,
+                width: '3px',
+                background: 'linear-gradient(to bottom, transparent 0%, rgba(212, 175, 55, 0.5) 20%, rgba(212, 175, 55, 0.8) 50%, rgba(212, 175, 55, 0.5) 80%, transparent 100%)',
+                transform: 'translateX(-50%)',
+                zIndex: 1,
+                display: { xs: 'none', md: 'block' }
+              }}
+            />
+
+            {/* Timeline Items */}
+            {[
+              {
+                year: '2016',
+                title: 'The Beginning',
+                description: 'Started building when ETH was $300. Weekend hackathons, analytics tools, learning every deployment.',
+                icon: '🌱',
+                side: 'left',
+                code: 'if (eth_price < 300) { start_building(); }'
+              },
+              {
+                year: '2019',
+                title: 'First Production',
+                description: 'Deployed our first smart contracts. Learned the hard way about gas optimization and security.',
+                icon: '🚀',
+                side: 'right',
+                code: 'contract.deploy({ gasLimit: "too_much" })'
+              },
+              {
+                year: '2021',
+                title: 'DeFi Breakthrough',
+                description: 'Major DeFi players noticed our work. Started handling millions in TVL with zero hack record.',
+                icon: '💎',
+                side: 'left',
+                code: 'TVL.add(millions); security_incidents = 0;'
+              },
+              {
+                year: '2023',
+                title: 'Unforkable Born',
+                description: 'Formalized the company. Now the silent partners behind many innovative builders.',
+                icon: '⚡',
+                side: 'right',
+                code: 'Unforkable.initialize({ stealth: true })'
+              },
+              {
+                year: '2024',
+                title: 'Full Stack Web3',
+                description: 'Complete blockchain ecosystems. From custom Substrate chains to sophisticated DeFi protocols.',
+                icon: '🏗️',
+                side: 'left',
+                code: 'build_everything().from_scratch().ship_fast()'
+              }
+            ].map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: 'flex',
+                  justifyContent: { xs: 'center', md: item.side === 'left' ? 'flex-start' : 'flex-end' },
+                  mb: 6,
+                  position: 'relative'
                 }}
-                onClick={() => navigate(card.path)}
               >
-                <CardContent sx={{ p: 4, textAlign: 'center', position: 'relative' }}>
-                  <Avatar 
-                    src={card.image}
-                    sx={{ 
-                      width: 80, 
-                      height: 80, 
-                      mx: 'auto', 
-                      mb: 3,
-                      border: '2px solid rgba(212, 175, 55, 0.3)'
-                    }}
-                  />
-                  <Typography 
-                    variant="h5" 
-                    sx={{ 
-                      fontWeight: 600, 
-                      color: 'primary.main', 
-                      mb: 2 
-                    }}
-                  >
-                    {card.title}
-                  </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      color: 'text.secondary',
-                      lineHeight: 1.6,
-                      mb: 2
-                    }}
-                  >
-                    {card.description}
-                  </Typography>
-                  
-                  {/* Code snippet */}
-                  <Box
-                    sx={{
-                      backgroundColor: 'rgba(0,0,0,0.4)',
-                      border: '1px solid rgba(212, 175, 55, 0.2)',
-                      borderRadius: 1,
-                      p: 1.5,
-                      mb: 2,
-                      fontFamily: 'monospace',
-                      fontSize: '0.75rem',
-                      color: 'rgba(212, 175, 55, 0.8)',
-                      textAlign: 'left',
-                      overflow: 'hidden',
-                      position: 'relative'
-                    }}
-                  >
+                {/* Timeline Node */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '20px',
+                    transform: 'translateX(-50%)',
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(255, 193, 7, 1) 100%)',
+                    border: '3px solid rgba(0,0,0,1)',
+                    zIndex: 2,
+                    display: { xs: 'none', md: 'block' },
+                    animation: `pulse${index} 3s ease-in-out infinite`,
+                    [`@keyframes pulse${index}`]: {
+                      '0%, 100%': { 
+                        boxShadow: '0 0 0 0 rgba(212, 175, 55, 0.4)' 
+                      },
+                      '50%': { 
+                        boxShadow: '0 0 0 10px rgba(212, 175, 55, 0)' 
+                      }
+                    }
+                  }}
+                />
+
+                {/* Content Card */}
+                <Card
+                  elevation={6}
+                  sx={{
+                    maxWidth: { xs: '100%', md: '450px' },
+                    width: '100%',
+                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.95) 100%)',
+                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    borderRadius: 3,
+                    transition: 'all 0.4s ease',
+                    cursor: 'pointer',
+                    mr: { xs: 0, md: item.side === 'left' ? 8 : 0 },
+                    ml: { xs: 0, md: item.side === 'right' ? 8 : 0 },
+                    '&:hover': {
+                      transform: 'translateY(-5px) scale(1.02)',
+                      boxShadow: '0 15px 35px rgba(212, 175, 55, 0.2)',
+                      borderColor: 'primary.main'
+                    }
+                  }}
+                >
+                  <CardContent sx={{ p: 4 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        sx={{
+                          fontSize: '2rem',
+                          mr: 2,
+                          animation: 'bounce 2s ease-in-out infinite',
+                          '@keyframes bounce': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' }
+                          }
+                        }}
+                      >
+                        {item.icon}
+                      </Box>
+                      <Box>
+                        <Typography 
+                          variant="h4" 
+                          sx={{ 
+                            fontWeight: 700, 
+                            color: 'primary.main',
+                            fontFamily: 'monospace'
+                          }}
+                        >
+                          {item.year}
+                        </Typography>
+                        <Typography 
+                          variant="h6" 
+                          sx={{ 
+                            fontWeight: 600, 
+                            color: 'white'
+                          }}
+                        >
+                          {item.title}
+                        </Typography>
+                      </Box>
+                    </Box>
+                    
+                    <Typography 
+                      variant="body1" 
+                      sx={{ 
+                        color: 'text.secondary',
+                        lineHeight: 1.6,
+                        mb: 3
+                      }}
+                    >
+                      {item.description}
+                    </Typography>
+
+                    {/* Code Block */}
                     <Box
                       sx={{
+                        backgroundColor: 'rgba(0,0,0,0.6)',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        borderRadius: 2,
+                        p: 2,
+                        fontFamily: 'monospace',
+                        fontSize: '0.85rem',
+                        color: 'rgba(212, 175, 55, 0.9)',
+                        position: 'relative',
+                        overflow: 'hidden',
                         '&::before': {
-                          content: '"$ "',
-                          color: 'primary.main',
-                          fontWeight: 'bold'
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '2px',
+                          background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%)',
+                          animation: 'scan 3s ease-in-out infinite',
+                          '@keyframes scan': {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                          }
                         }
                       }}
                     >
-                      {card.code}
+                      <Box component="span" sx={{ color: 'rgba(100, 255, 100, 0.8)' }}>
+                        {'// '}
+                      </Box>
+                      {item.code}
                     </Box>
-                  </Box>
-                  
-                  <Button
-                    variant="text"
-                    endIcon={<ArrowForwardIcon />}
-                    sx={{ 
-                      mt: 1,
-                      color: 'primary.main',
-                      fontWeight: 600
-                    }}
-                  >
-                    Explore
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
+          </Box>
+
+          {/* Call to Action */}
+          <Box sx={{ textAlign: 'center', mt: 8 }}>
+            <Typography 
+              variant="h5" 
+              sx={{ 
+                mb: 3, 
+                color: 'white',
+                fontWeight: 600
+              }}
+            >
+              Ready to be part of the next chapter?
+            </Typography>
+            <Button 
+              variant="contained" 
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              onClick={() => navigate('/contact')}
+              sx={{ 
+                background: 'linear-gradient(45deg, #D4AF37 30%, #FFD700 90%)',
+                px: 6,
+                py: 2,
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                boxShadow: '0 8px 32px rgba(212, 175, 55, 0.3)',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 12px 40px rgba(212, 175, 55, 0.4)'
+                }
+              }}
+            >
+              Let's Build Together
+            </Button>
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 };
