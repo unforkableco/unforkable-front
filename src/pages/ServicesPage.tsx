@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Grid, Card, Chip, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Container, Typography, Grid, Card, Slide, IconButton, Divider } from '@mui/material';
 import StorageIcon from '@mui/icons-material/Storage';
 import CodeIcon from '@mui/icons-material/Code';
 import ComputerIcon from '@mui/icons-material/Computer';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import SupportIcon from '@mui/icons-material/Support';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import LaunchIcon from '@mui/icons-material/Launch';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CloseIcon from '@mui/icons-material/Close';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 import useContent from '../hooks/useContent';
+import { useTheme } from '../contexts/ThemeContext';
 
 const serviceIcons = {
   'AI Agent & Automation Services': SmartToyIcon,
@@ -132,372 +133,454 @@ const serviceFeatures = {
 
 const ServicesPage: React.FC = () => {
   const content = useContent();
-  const navigate = useNavigate();
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
+  const { currentThemeConfig } = useTheme();
+  const [selectedService, setSelectedService] = useState<number | null>(null);
+
+  const handleServiceClick = (index: number) => {
+    setSelectedService(selectedService === index ? null : index);
+  };
+
+  const selectedServiceData = selectedService !== null ? content.services.services[selectedService] : null;
+  const selectedFeatures = selectedServiceData ? serviceFeatures[selectedServiceData.title as keyof typeof serviceFeatures] || [] : [];
+  const SelectedIcon = selectedServiceData ? serviceIcons[selectedServiceData.title as keyof typeof serviceIcons] : null;
 
   return (
     <Box sx={{ 
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)',
+      backgroundColor: currentThemeConfig.background,
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Animated Background Elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `
-            radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.08) 0%, transparent 50%)
-          `,
-          animation: 'float 20s ease-in-out infinite',
-          zIndex: 1
-        }}
-      />
-
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, py: 8 }}>
-        {/* Header Section */}
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              color: 'primary.main',
-              fontWeight: 600,
-              letterSpacing: 2,
-              mb: 2,
-              textTransform: 'uppercase'
-            }}
-          >
-            {content.services.overline}
-          </Typography>
-          <Typography 
-            variant="h1" 
-            sx={{ 
-              fontWeight: 900, 
-              mb: 4, 
-              fontSize: { xs: '2.5rem', md: '4rem' },
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              lineHeight: 1.2
-            }}
-          >
-            {content.services.title}
-          </Typography>
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              color: 'text.secondary', 
-              maxWidth: 800, 
-              mx: 'auto',
-              lineHeight: 1.6,
-              fontSize: { xs: '1.2rem', md: '1.5rem' }
-            }}
-          >
-            Hover over each service to discover what we build and how we can help your project
-          </Typography>
-        </Box>
-
-        {/* Services Grid */}
-        <Grid container spacing={3}>
-          {content.services.services.map((service, index) => {
-            const IconComponent = serviceIcons[service.title as keyof typeof serviceIcons];
-            const features = serviceFeatures[service.title as keyof typeof serviceFeatures] || [];
-            const isHovered = hoveredService === index;
-            
-            return (
-              <Grid item xs={12} md={6} lg={4} key={index}>
-                <Card 
-                  elevation={0}
-                  onMouseEnter={() => setHoveredService(index)}
-                  onMouseLeave={() => setHoveredService(null)}
+      <Container maxWidth="xl" sx={{ py: 8, position: 'relative' }}>
+        <Grid container spacing={0} sx={{ minHeight: '80vh' }}>
+          {/* Services Grid - Left Side */}
+          <Grid item xs={12} lg={selectedService !== null ? 8 : 12}>
+            <Box sx={{ pr: { lg: selectedService !== null ? 3 : 0 } }}>
+              {/* Header Section */}
+              <Box sx={{ textAlign: 'center', mb: 6 }}>
+                <Typography 
+                  variant="h6" 
                   sx={{ 
-                    height: isHovered ? 'auto' : '280px',
-                    minHeight: '280px',
-                    background: isHovered 
-                      ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.95) 100%)'
-                      : 'linear-gradient(135deg, rgba(20,20,20,0.6) 0%, rgba(40,40,40,0.4) 100%)',
-                    border: isHovered 
-                      ? '2px solid rgba(212, 175, 55, 0.6)'
-                      : '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: 4,
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    transform: isHovered ? 'translateY(-12px) scale(1.02)' : 'translateY(0) scale(1)',
-                    boxShadow: isHovered 
-                      ? '0 25px 50px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.2)'
-                      : '0 8px 32px rgba(0,0,0,0.3)',
-                    backdropFilter: 'blur(10px)',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: isHovered 
-                        ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%)'
-                        : 'transparent',
-                      transition: 'all 0.5s ease',
-                      zIndex: 1
-                    }
+                    color: currentThemeConfig.primary,
+                    fontWeight: 600,
+                    letterSpacing: 2,
+                    mb: 2,
+                    textTransform: 'uppercase'
                   }}
                 >
-                  {/* Animated Background Pattern */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: -100,
-                      right: -100,
-                      width: 200,
-                      height: 200,
-                      borderRadius: '50%',
-                      background: `radial-gradient(circle, ${isHovered ? 'rgba(212, 175, 55, 0.2)' : 'rgba(212, 175, 55, 0.05)'} 0%, transparent 70%)`,
-                      transition: 'all 0.5s ease',
-                      transform: isHovered ? 'scale(1.5)' : 'scale(1)',
-                      zIndex: 1
-                    }}
-                  />
+                  {content.services.overline}
+                </Typography>
+                <Typography 
+                  variant="h1" 
+                  sx={{ 
+                    fontWeight: 900, 
+                    mb: 4, 
+                    fontSize: { xs: '2.5rem', md: '3.5rem' },
+                    background: `linear-gradient(135deg, ${currentThemeConfig.textPrimary} 0%, ${currentThemeConfig.primary} 100%)`,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    lineHeight: 1.2
+                  }}
+                >
+                  {content.services.title}
+                </Typography>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    color: currentThemeConfig.textSecondary, 
+                    maxWidth: 600, 
+                    mx: 'auto',
+                    lineHeight: 1.6,
+                    fontSize: { xs: '1rem', md: '1.2rem' }
+                  }}
+                >
+                  Click on any service to explore what we build
+                </Typography>
+              </Box>
+
+              {/* Services Grid */}
+              <Grid container spacing={3}>
+                {content.services.services.map((service, index) => {
+                  const IconComponent = serviceIcons[service.title as keyof typeof serviceIcons];
+                  const isSelected = selectedService === index;
                   
-                  <Box sx={{ p: 4, position: 'relative', zIndex: 2, height: '100%' }}>
-                    {/* Service Icon and Title */}
-                    <Box sx={{ 
-                      textAlign: 'center', 
-                      mb: isHovered ? 3 : 4,
-                      transition: 'all 0.3s ease'
-                    }}>
-                      <Box
-                        sx={{
-                          width: 80,
-                          height: 80,
-                          mx: 'auto',
-                          mb: 3,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderRadius: '50%',
-                          background: isHovered 
-                            ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%)'
-                            : 'rgba(212, 175, 55, 0.1)',
-                          border: `2px solid ${isHovered ? 'rgba(212, 175, 55, 0.6)' : 'rgba(212, 175, 55, 0.2)'}`,
-                          transition: 'all 0.5s ease',
-                          transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
+                  return (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                      <Card 
+                        elevation={0}
+                        onClick={() => handleServiceClick(index)}
+                        sx={{ 
+                          height: '280px',
+                          background: isSelected 
+                            ? `linear-gradient(135deg, ${currentThemeConfig.primary}30 0%, ${currentThemeConfig.primary}10 100%)`
+                            : `linear-gradient(135deg, ${currentThemeConfig.paper}99 0%, ${currentThemeConfig.background}80 100%)`,
+                          border: isSelected 
+                            ? `2px solid ${currentThemeConfig.primary}`
+                            : `1px solid ${currentThemeConfig.primary}20`,
+                          borderRadius: 3,
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                          position: 'relative',
+                          overflow: 'hidden',
+                          cursor: 'pointer',
+                          transform: isSelected ? 'scale(1.02)' : 'scale(1)',
+                          boxShadow: isSelected 
+                            ? `0 20px 40px ${currentThemeConfig.primary}40`
+                            : `0 8px 24px ${currentThemeConfig.background}60`,
+                          '&:hover': {
+                            transform: isSelected ? 'scale(1.02)' : 'scale(1.05)',
+                            boxShadow: `0 16px 40px ${currentThemeConfig.primary}40`,
+                            borderColor: currentThemeConfig.primary,
+                            '& .service-icon': {
+                              transform: 'scale(1.1)',
+                              background: `linear-gradient(135deg, ${currentThemeConfig.primary} 0%, ${currentThemeConfig.secondary} 100%)`,
+                              '& svg': {
+                                color: 'white'
+                              }
+                            },
+                            '& .click-indicator': {
+                              opacity: 1,
+                              transform: 'translateY(0)'
+                            },
+                            '& .hover-glow': {
+                              opacity: 0.8
+                            }
+                          }
                         }}
                       >
-                        {IconComponent && (
-                          <IconComponent 
-                            sx={{ 
-                              fontSize: 40, 
-                              color: isHovered ? 'primary.main' : 'rgba(212, 175, 55, 0.8)',
-                              transition: 'all 0.3s ease'
-                            }} 
-                          />
+                        {/* Hover Glow Effect */}
+                        <Box
+                          className="hover-glow"
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: `radial-gradient(circle at center, ${currentThemeConfig.primary}20 0%, transparent 70%)`,
+                            opacity: 0,
+                            transition: 'opacity 0.3s ease',
+                            pointerEvents: 'none'
+                          }}
+                        />
+
+                        {/* Selection Indicator */}
+                        {isSelected && (
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              top: 16,
+                              right: 16,
+                              width: 32,
+                              height: 32,
+                              borderRadius: '50%',
+                              backgroundColor: currentThemeConfig.primary,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              zIndex: 3,
+                              boxShadow: `0 4px 12px ${currentThemeConfig.primary}60`,
+                              animation: 'pulse 2s infinite'
+                            }}
+                          >
+                            <ArrowForwardIosIcon sx={{ fontSize: 14, color: 'white' }} />
+                          </Box>
                         )}
+
+                        {/* Click Indicator */}
+                        <Box
+                          className="click-indicator"
+                          sx={{
+                            position: 'absolute',
+                            bottom: 16,
+                            right: 16,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 0.5,
+                            padding: '4px 8px',
+                            borderRadius: 2,
+                            backgroundColor: `${currentThemeConfig.primary}20`,
+                            border: `1px solid ${currentThemeConfig.primary}40`,
+                            opacity: 0,
+                            transform: 'translateY(10px)',
+                            transition: 'all 0.3s ease',
+                            zIndex: 2
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: currentThemeConfig.primary,
+                              fontSize: '0.7rem',
+                              fontWeight: 600,
+                              textTransform: 'uppercase',
+                              letterSpacing: 0.5
+                            }}
+                          >
+                            Click to explore
+                          </Typography>
+                          <ArrowForwardIosIcon sx={{ fontSize: 10, color: currentThemeConfig.primary }} />
+                        </Box>
+                        
+                        <Box sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                          {/* Service Icon */}
+                          <Box
+                            className="service-icon"
+                            sx={{
+                              width: 80,
+                              height: 80,
+                              mb: 3,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              borderRadius: '50%',
+                              background: isSelected 
+                                ? `linear-gradient(135deg, ${currentThemeConfig.primary} 0%, ${currentThemeConfig.secondary} 100%)`
+                                : `${currentThemeConfig.primary}20`,
+                              border: `2px solid ${isSelected ? 'transparent' : `${currentThemeConfig.primary}40`}`,
+                              transition: 'all 0.3s ease',
+                              position: 'relative',
+                              '&::after': {
+                                content: '""',
+                                position: 'absolute',
+                                inset: -2,
+                                borderRadius: '50%',
+                                background: `conic-gradient(from 0deg, ${currentThemeConfig.primary}, ${currentThemeConfig.secondary}, ${currentThemeConfig.primary})`,
+                                opacity: isSelected ? 0.3 : 0,
+                                transition: 'opacity 0.3s ease',
+                                zIndex: -1
+                              }
+                            }}
+                          >
+                            {IconComponent && (
+                              <IconComponent 
+                                sx={{ 
+                                  fontSize: 40, 
+                                  color: isSelected ? 'white' : currentThemeConfig.primary,
+                                  transition: 'all 0.3s ease',
+                                  filter: isSelected ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' : 'none'
+                                }} 
+                              />
+                            )}
+                          </Box>
+                          
+                          {/* Service Title */}
+                          <Typography 
+                            variant="h6" 
+                            sx={{ 
+                              fontWeight: 700, 
+                              color: isSelected ? currentThemeConfig.primary : currentThemeConfig.textPrimary,
+                              mb: 2,
+                              transition: 'all 0.3s ease',
+                              fontSize: '1.1rem',
+                              lineHeight: 1.3
+                            }}
+                          >
+                            {service.title}
+                          </Typography>
+
+                          {/* Brief Description */}
+                          <Typography 
+                            variant="body2" 
+                            sx={{ 
+                              color: currentThemeConfig.textSecondary,
+                              lineHeight: 1.5,
+                              fontSize: '0.9rem',
+                              opacity: 0.8
+                            }}
+                          >
+                            {service.description.length > 80 
+                              ? `${service.description.substring(0, 80)}...`
+                              : service.description}
+                          </Typography>
+                        </Box>
+
+                        {/* Interactive Border Animation */}
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            inset: 0,
+                            borderRadius: 3,
+                            background: `linear-gradient(45deg, ${currentThemeConfig.primary}40, transparent, ${currentThemeConfig.secondary}40, transparent)`,
+                            opacity: 0,
+                            transition: 'opacity 0.3s ease',
+                            pointerEvents: 'none',
+                            '.MuiCard-root:hover &': {
+                              opacity: 0.3
+                            }
+                          }}
+                        />
+                      </Card>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Box>
+          </Grid>
+
+          {/* Detail Panel - Right Side */}
+          <Grid item xs={12} lg={4}>
+            <Slide direction="left" in={selectedService !== null} mountOnEnter unmountOnExit>
+              <Box
+                sx={{
+                  height: '100%',
+                  minHeight: '600px',
+                  background: `linear-gradient(135deg, ${currentThemeConfig.primary}10 0%, ${currentThemeConfig.paper} 100%)`,
+                  border: `1px solid ${currentThemeConfig.primary}30`,
+                  borderRadius: 3,
+                  position: 'sticky',
+                  top: 100,
+                  overflow: 'hidden'
+                }}
+              >
+                {selectedServiceData && (
+                  <>
+                    {/* Header */}
+                    <Box sx={{ 
+                      p: 3, 
+                      borderBottom: `1px solid ${currentThemeConfig.primary}20`,
+                      background: `linear-gradient(135deg, ${currentThemeConfig.primary}20 0%, transparent 100%)`
+                    }}>
+                      <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 2 }}>
+                        <Box sx={{ flex: 1 }}>
+                          {SelectedIcon && (
+                            <Box
+                              sx={{
+                                width: 60,
+                                height: 60,
+                                mb: 2,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: '50%',
+                                background: `linear-gradient(135deg, ${currentThemeConfig.primary} 0%, ${currentThemeConfig.secondary} 100%)`,
+                              }}
+                            >
+                              <SelectedIcon sx={{ fontSize: 30, color: 'white' }} />
+                            </Box>
+                          )}
+                          <Typography 
+                            variant="h5" 
+                            sx={{ 
+                              fontWeight: 700, 
+                              color: currentThemeConfig.primary,
+                              lineHeight: 1.3,
+                              mb: 1
+                            }}
+                          >
+                            {selectedServiceData.title}
+                          </Typography>
+                        </Box>
+                        <IconButton 
+                          onClick={() => setSelectedService(null)}
+                          sx={{ 
+                            color: currentThemeConfig.textSecondary,
+                            '&:hover': { 
+                              backgroundColor: `${currentThemeConfig.primary}20`,
+                              color: currentThemeConfig.primary
+                            }
+                          }}
+                        >
+                          <CloseIcon />
+                        </IconButton>
                       </Box>
-                      
-                      <Typography 
-                        variant="h5" 
-                        sx={{ 
-                          fontWeight: 700, 
-                          color: isHovered ? 'primary.main' : 'white',
-                          mb: 2,
-                          transition: 'all 0.3s ease',
-                          fontSize: { xs: '1.3rem', md: '1.5rem' },
-                          lineHeight: 1.3
-                        }}
-                      >
-                        {service.title}
-                      </Typography>
                     </Box>
 
-                    {/* Service Description - Always visible but changes on hover */}
-                    <Box sx={{ 
-                      opacity: isHovered ? 0 : 1,
-                      transform: isHovered ? 'translateY(-20px)' : 'translateY(0)',
-                      transition: 'all 0.3s ease',
-                      position: isHovered ? 'absolute' : 'relative',
-                      visibility: isHovered ? 'hidden' : 'visible'
-                    }}>
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: 'text.secondary',
-                          lineHeight: 1.6,
-                          textAlign: 'center',
-                          fontSize: '0.95rem'
-                        }}
-                      >
-                        {service.description.length > 120 
-                          ? `${service.description.substring(0, 120)}...`
-                          : service.description}
-                      </Typography>
-                    </Box>
-
-                    {/* Detailed Content - Appears on hover */}
-                    <Box sx={{ 
-                      opacity: isHovered ? 1 : 0,
-                      transform: isHovered ? 'translateY(0)' : 'translateY(20px)',
-                      transition: 'all 0.5s ease 0.1s',
-                      position: isHovered ? 'relative' : 'absolute',
-                      visibility: isHovered ? 'visible' : 'hidden'
-                    }}>
+                    {/* Content */}
+                    <Box sx={{ p: 3, height: 'calc(100% - 140px)', overflowY: 'auto' }}>
                       {/* Full Description */}
                       <Typography 
                         variant="body1" 
                         sx={{ 
-                          color: 'text.secondary',
-                          lineHeight: 1.6,
-                          mb: 3,
-                          fontSize: '0.95rem'
+                          color: currentThemeConfig.textSecondary,
+                          lineHeight: 1.7,
+                          mb: 4,
+                          fontSize: '1rem'
                         }}
                       >
-                        {service.description}
+                        {selectedServiceData.description}
                       </Typography>
 
-                      {/* Features Grid */}
-                      <Box sx={{ mb: 3 }}>
-                        <Typography 
-                          variant="h6" 
-                          sx={{ 
-                            color: 'primary.main',
-                            fontWeight: 600,
-                            mb: 2,
-                            fontSize: '1.1rem'
-                          }}
-                        >
-                          What We Build:
-                        </Typography>
-                        <Box sx={{ 
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          gap: 1,
-                          mb: 3
-                        }}>
-                          {features.slice(0, 6).map((feature, featureIndex) => (
-                            <Chip
-                              key={featureIndex}
-                              label={feature}
-                              size="small"
-                              sx={{
-                                backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                                color: 'primary.main',
-                                border: '1px solid rgba(212, 175, 55, 0.3)',
-                                fontSize: '0.75rem',
-                                height: 28,
-                                '&:hover': {
-                                  backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                                  transform: 'scale(1.05)'
-                                },
-                                transition: 'all 0.2s ease'
-                              }}
-                            />
-                          ))}
-                          {features.length > 6 && (
-                            <Chip
-                              label={`+${features.length - 6} more`}
-                              size="small"
-                              sx={{
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                                color: 'text.secondary',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                fontSize: '0.75rem',
-                                height: 28
-                              }}
-                            />
-                          )}
-                        </Box>
-                      </Box>
+                      <Divider sx={{ mb: 3, borderColor: `${currentThemeConfig.primary}20` }} />
 
-                      {/* Action Button */}
-                      <Button
-                        variant="outlined"
-                        endIcon={<ArrowForwardIcon />}
-                        onClick={() => navigate('/contact')}
-                        sx={{
-                          borderColor: 'primary.main',
-                          color: 'primary.main',
-                          '&:hover': {
-                            borderColor: 'primary.main',
-                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                            transform: 'translateX(4px)'
-                          },
-                          transition: 'all 0.3s ease',
-                          textTransform: 'none',
-                          fontWeight: 600
+                      {/* Features */}
+                      <Typography 
+                        variant="h6" 
+                        sx={{ 
+                          color: currentThemeConfig.primary,
+                          fontWeight: 600,
+                          mb: 3,
+                          fontSize: '1.2rem'
                         }}
                       >
-                        Get Quote
-                      </Button>
+                        What We Build:
+                      </Typography>
+                      
+                      <Box sx={{ 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 1
+                      }}>
+                        {selectedFeatures.map((feature, featureIndex) => (
+                          <Box
+                            key={featureIndex}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              p: 2,
+                              borderRadius: 2,
+                              backgroundColor: `${currentThemeConfig.primary}10`,
+                              border: `1px solid ${currentThemeConfig.primary}20`,
+                              transition: 'all 0.2s ease',
+                              '&:hover': {
+                                backgroundColor: `${currentThemeConfig.primary}20`,
+                                transform: 'translateX(4px)',
+                              }
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                width: 6,
+                                height: 6,
+                                borderRadius: '50%',
+                                backgroundColor: currentThemeConfig.primary,
+                                mr: 2,
+                                flexShrink: 0
+                              }}
+                            />
+                            <Typography 
+                              variant="body2" 
+                              sx={{ 
+                                color: currentThemeConfig.textPrimary,
+                                fontWeight: 500,
+                                fontSize: '0.9rem'
+                              }}
+                            >
+                              {feature}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
-                  </Box>
-                </Card>
-              </Grid>
-            );
-          })}
+                  </>
+                )}
+              </Box>
+            </Slide>
+          </Grid>
         </Grid>
-
-        {/* Call to Action */}
-        <Box sx={{ textAlign: 'center', mt: 8 }}>
-          <Typography 
-            variant="h4" 
-            sx={{ 
-              fontWeight: 700, 
-              mb: 3,
-              color: 'white'
-            }}
-          >
-            Ready to Build Something Amazing?
-          </Typography>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              color: 'text.secondary', 
-              mb: 4,
-              maxWidth: 600,
-              mx: 'auto'
-            }}
-          >
-            Let's discuss your project and see how we can help bring your blockchain vision to life.
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={() => navigate('/contact')}
-            sx={{
-              backgroundColor: 'primary.main',
-              color: 'black',
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              px: 6,
-              py: 2,
-              borderRadius: 3,
-              textTransform: 'none',
-              '&:hover': {
-                backgroundColor: 'primary.dark',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 10px 25px rgba(212, 175, 55, 0.4)'
-              },
-              transition: 'all 0.3s ease'
-            }}
-          >
-            Start Your Project
-          </Button>
-        </Box>
       </Container>
 
+      {/* Global Styles for Animations */}
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-20px) rotate(1deg); }
-          66% { transform: translateY(-10px) rotate(-1deg); }
+        @keyframes pulse {
+          0%, 100% { 
+            transform: scale(1); 
+            opacity: 1; 
+          }
+          50% { 
+            transform: scale(1.05); 
+            opacity: 0.8; 
+          }
         }
       `}</style>
     </Box>

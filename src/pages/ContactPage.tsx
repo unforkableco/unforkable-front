@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Card, CardContent, Avatar, Button } from '@mui/material';
+import { Box, Container, Typography, Grid, Card, CardContent, Avatar } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import useContent from '../hooks/useContent';
 import LinkedInSection from '../components/LinkedInSection';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ContactPage: React.FC = () => {
   const content = useContent();
+  const { currentThemeConfig } = useTheme();
 
   const contactMethods = [
     {
@@ -48,15 +50,15 @@ const ContactPage: React.FC = () => {
               transform: 'translateX(-50%)',
               width: '300px',
               height: '60px',
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
+              backgroundColor: `${currentThemeConfig.background}CC`,
+              border: `1px solid ${currentThemeConfig.primary}60`,
               borderRadius: 1,
               display: 'flex',
               alignItems: 'center',
               px: 2,
               fontFamily: 'monospace',
               fontSize: '0.8rem',
-              color: 'rgba(212, 175, 55, 0.7)',
+              color: `${currentThemeConfig.primary}B3`,
               zIndex: 0,
               '&::before': {
                 content: '"$ ./contact_us.sh"',
@@ -79,7 +81,7 @@ const ContactPage: React.FC = () => {
               fontWeight: 800, 
               mb: 3, 
               color: 'white',
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
+              background: `linear-gradient(135deg, ${currentThemeConfig.textPrimary} 0%, ${currentThemeConfig.primary} 100%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -245,27 +247,6 @@ const ContactPage: React.FC = () => {
               Need a custom blockchain? Smart contracts that don't get hacked? DeFi protocols that handle real volume? 
               We've been there, built that. Drop us a line and let's talk code.
             </Typography>
-            
-                         <Button
-               variant="contained"
-               size="large"
-               startIcon={<EmailIcon />}
-               onClick={() => window.open(`mailto:${content.contact.contactInfo.find(info => info.title === 'Email')?.value || 'contact@unforkable.co'}`, '_blank')}
-               sx={{
-                background: 'linear-gradient(45deg, #D4AF37 30%, #FFD700 90%)',
-                px: 6,
-                py: 2,
-                fontSize: '1.2rem',
-                fontWeight: 600,
-                boxShadow: '0 8px 32px rgba(212, 175, 55, 0.3)',
-                '&:hover': {
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 12px 40px rgba(212, 175, 55, 0.4)'
-                }
-              }}
-            >
-              Start Your Project Today
-            </Button>
           </Box>
         </Card>
 
@@ -299,7 +280,7 @@ const ContactPage: React.FC = () => {
               </Box>
               <Box sx={{ mb: 2 }}>
                 <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  • <strong>Free Consultation:</strong> Initial project assessment at no cost
+                  • <strong>Initial Consultation:</strong> Project assessment and technical discussion
                 </Typography>
               </Box>
               <Box sx={{ mb: 2 }}>

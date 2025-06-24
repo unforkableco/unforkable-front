@@ -304,7 +304,7 @@
       "email": "Your Email",
       "subject": "Project Type",
       "message": "Tell us about your project",
-      "submitButton": "Get Quote"
+      "submitButton": "Send Message"
     },
     "contactInfo": [
       {
@@ -336,4 +336,4 @@
     },
     "copyright": "© 2025 Unforkable S.A.R.L. All rights reserved."
   }
-}
+} 

@@ -4,10 +4,12 @@ import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import useContent from '../hooks/useContent';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ContactSection: React.FC = () => {
   const content = useContent();
   const { title, contactInfo } = content.contact;
+  const { currentThemeConfig } = useTheme();
 
   const getIcon = (title: string) => {
     switch (title.toLowerCase()) {
@@ -67,7 +69,7 @@ const ContactSection: React.FC = () => {
                 p: 2,
                 borderRadius: 2,
                 backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                border: `1px solid ${currentThemeConfig.primary}33`,
                 transition: 'all 0.3s ease',
                 '&:hover': {
                   borderColor: 'primary.main',

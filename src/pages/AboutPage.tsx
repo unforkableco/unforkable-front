@@ -1,252 +1,293 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Card, Chip } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import BusinessIcon from '@mui/icons-material/Business';
+import SecurityIcon from '@mui/icons-material/Security';
+import GroupIcon from '@mui/icons-material/Group';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import useContent from '../hooks/useContent';
+import { useTheme } from '../contexts/ThemeContext';
 import LinkedInSection from '../components/LinkedInSection';
 
 const AboutPage: React.FC = () => {
   const content = useContent();
+  const { currentThemeConfig } = useTheme();
 
+  const stats = [
+    { icon: <BusinessIcon />, label: 'Founded', value: '2016' },
+    { icon: <TrendingUpIcon />, label: 'Projects Delivered', value: '50+' },
+    { icon: <SecurityIcon />, label: 'Security Record', value: '100%' },
+    { icon: <GroupIcon />, label: 'Global Team', value: '24/7' }
+  ];
 
+  const technologies = [
+    'Substrate', 'Solidity', 'Rust', 'TypeScript', 'React', 'Node.js',
+    'Python', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL', 'Redis',
+    'Chainlink', 'Uniswap', 'IPFS', 'GraphQL', 'Web3.js', 'Ethers.js'
+  ];
 
   return (
-    <Box sx={{ py: 4 }}>
-      <Container maxWidth="lg">
-        {/* Header Section */}
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography 
-            variant="h2" 
-            sx={{ 
-              fontWeight: 800, 
-              mb: 3, 
-              color: 'white',
-              background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
-          >
-            {content.about.title}
-          </Typography>
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              color: 'text.secondary', 
-              maxWidth: 800, 
-              mx: 'auto',
-              lineHeight: 1.6
-            }}
-          >
-            Learn about our journey, expertise, and commitment to delivering exceptional Web3 and AI solutions.
-          </Typography>
-        </Box>
-
-        {/* Main Content */}
-        <Grid container spacing={6} alignItems="center">
-          {/* Company Story */}
-          <Grid item xs={12} md={8}>
-            <Card 
-              elevation={8}
-              sx={{ 
-                background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
-                borderRadius: 3,
-                p: 4
-              }}
-            >
-              <Typography 
-                variant="h4" 
-                sx={{ 
-                  fontWeight: 600, 
-                  color: 'primary.main', 
-                  mb: 3 
-                }}
-              >
-                Our Story
-              </Typography>
-              
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  color: 'text.secondary',
-                  lineHeight: 1.8,
-                  mb: 4,
-                  fontSize: '1.1rem'
-                }}
-              >
-                {content.about.description}
-              </Typography>
-            </Card>
-          </Grid>
-
-          {/* Company Image */}
-          <Grid item xs={12} md={4}>
-            <Box 
-              sx={{ 
-                display: 'flex', 
+    <Box sx={{ backgroundColor: currentThemeConfig.background, minHeight: '100vh', pt: 10 }}>
+      {/* Hero Section with Prominent Logo */}
+      <Box 
+        sx={{ 
+          py: 8, 
+          backgroundColor: currentThemeConfig.background,
+          color: currentThemeConfig.textPrimary,
+          textAlign: 'center',
+          position: 'relative'
+        }}
+      >
+        <Container maxWidth="lg">
+          {/* Massive Logo Section */}
+          <Box sx={{ mb: 6 }}>
+            <Box
+              sx={{
+                width: { xs: 250, md: 350 },
+                height: { xs: 250, md: 350 },
+                mx: 'auto',
+                mb: 4,
+                position: 'relative',
+                borderRadius: '50%',
+                border: `3px solid ${currentThemeConfig.primary}`,
+                display: 'flex',
+                alignItems: 'center',
                 justifyContent: 'center',
-                position: 'relative'
+                backgroundColor: 'transparent',
               }}
             >
-              <Box
-                sx={{
-                  width: 250,
-                  height: 250,
-                  borderRadius: 3,
-                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0.8) 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '2px solid rgba(212, 175, 55, 0.3)',
-                  position: 'relative',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    inset: -10,
-                    borderRadius: 3,
-                    background: 'linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.2), transparent)',
-                    zIndex: -1
-                  }
-                }}
-              >
-                <img 
-                  src="/images/logo - !f (orange - black bg).png" 
-                  alt="Unforkable Team" 
-                  style={{ 
-                    width: '60%', 
-                    height: 'auto',
-                    filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.5))'
-                  }}
-                />
-              </Box>
+              <img 
+                src="/images/logo - !f (orange - black bg).png" 
+                alt="Unforkable Logo" 
+                style={{ 
+                  width: '80%', 
+                  height: '80%',
+                  objectFit: 'contain'
+                }} 
+              />
             </Box>
-          </Grid>
-        </Grid>
+            
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontWeight: 800,
+                mb: 2,
+                color: currentThemeConfig.textPrimary,
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em'
+              }}
+            >
+              UNFORKABLE
+            </Typography>
+            
+            <Typography 
+              variant="h5" 
+              sx={{ 
+                color: currentThemeConfig.primary,
+                fontWeight: 600,
+                mb: 6
+              }}
+            >
+              Blockchain Development Agency
+            </Typography>
+          </Box>
 
-
-
-        {/* Benefits Section */}
-        <Box sx={{ mt: 10 }}>
-          <Typography 
-            variant="h4" 
-            align="center" 
-            sx={{ 
-              fontWeight: 700, 
-              mb: 6, 
-              color: 'white'
-            }}
-          >
-            Why Choose Us
-          </Typography>
-          
-          <Grid container spacing={4}>
-            {content.about.benefits.map((benefit, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <Card 
-                  elevation={4}
-                  sx={{ 
+          {/* Company Stats */}
+          <Grid container spacing={4} sx={{ mb: 8 }}>
+            {stats.map((stat, index) => (
+              <Grid item xs={6} md={3} key={index}>
+                <Card
+                  elevation={0}
+                  sx={{
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${currentThemeConfig.primary}`,
+                    borderRadius: 3,
                     p: 3,
-                    background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
-                    borderRadius: 2,
+                    textAlign: 'center',
                     transition: 'all 0.3s ease',
                     '&:hover': {
+                      borderColor: currentThemeConfig.secondary,
                       transform: 'translateY(-4px)',
-                      borderColor: 'primary.main',
-                      boxShadow: '0 12px 24px rgba(212, 175, 55, 0.15)'
                     }
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                    <CheckCircleIcon 
-                      sx={{ 
-                        color: 'primary.main', 
-                        fontSize: 24, 
-                        mr: 2, 
-                        mt: 0.5,
-                        flexShrink: 0
-                      }} 
-                    />
-                    <Typography 
-                      variant="body1" 
-                      sx={{ 
-                        color: 'text.secondary',
-                        lineHeight: 1.6,
-                        fontWeight: 500
-                      }}
-                    >
-                      {benefit}
-                    </Typography>
+                  <Box sx={{ color: currentThemeConfig.primary, mb: 2, fontSize: '2rem' }}>
+                    {stat.icon}
                   </Box>
+                  <Typography 
+                    variant="h4" 
+                    sx={{ 
+                      fontWeight: 700, 
+                      color: currentThemeConfig.primary,
+                      mb: 1
+                    }}
+                  >
+                    {stat.value}
+                  </Typography>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: currentThemeConfig.textSecondary,
+                      fontWeight: 500
+                    }}
+                  >
+                    {stat.label}
+                  </Typography>
                 </Card>
               </Grid>
             ))}
           </Grid>
-        </Box>
+        </Container>
+      </Box>
 
-        {/* Technology Expertise */}
-        <Box sx={{ mt: 10 }}>
+      {/* Story Section */}
+      <Box sx={{ py: 8, backgroundColor: currentThemeConfig.background }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={6} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Typography 
+                variant="overline" 
+                sx={{ 
+                  color: currentThemeConfig.primary,
+                  fontWeight: 600,
+                  letterSpacing: '0.2em'
+                }}
+              >
+                {content.about.overline}
+              </Typography>
+              <Typography 
+                variant="h3" 
+                sx={{ 
+                  fontWeight: 700, 
+                  mb: 3,
+                  color: currentThemeConfig.textPrimary
+                }}
+              >
+                {content.about.title}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  p: 4,
+                  borderRadius: 3,
+                  backgroundColor: 'transparent',
+                  border: `1px solid ${currentThemeConfig.primary}`,
+                  position: 'relative',
+                }}
+              >
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    lineHeight: 1.8,
+                    color: currentThemeConfig.textSecondary,
+                    fontSize: '1.1rem'
+                  }}
+                >
+                  {content.about.description}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Benefits Section */}
+      <Box sx={{ py: 8, backgroundColor: currentThemeConfig.background }}>
+        <Container maxWidth="lg">
           <Typography 
             variant="h4" 
-            align="center" 
             sx={{ 
-              fontWeight: 700, 
-              mb: 6, 
-              color: 'white'
+              textAlign: 'center', 
+              mb: 6,
+              fontWeight: 700,
+              color: currentThemeConfig.textPrimary
             }}
           >
-            Our Expertise
+            Why Choose Unforkable
           </Typography>
-          
-          <Card 
-            elevation={8}
+          <Grid container spacing={3}>
+            {content.about.benefits.map((benefit, index) => (
+              <Grid item xs={12} md={6} key={index}>
+                <Card
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${currentThemeConfig.primary}`,
+                    borderRadius: 2,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      borderColor: currentThemeConfig.secondary,
+                      transform: 'translateY(-2px)',
+                    }
+                  }}
+                >
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      color: currentThemeConfig.textSecondary,
+                      lineHeight: 1.6,
+                      '&::before': {
+                        content: '"✓"',
+                        color: currentThemeConfig.primary,
+                        fontWeight: 'bold',
+                        marginRight: 1
+                      }
+                    }}
+                  >
+                    {benefit}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Technology Arsenal */}
+      <Box sx={{ py: 8, backgroundColor: currentThemeConfig.background }}>
+        <Container maxWidth="lg">
+          <Typography 
+            variant="h4" 
             sx={{ 
-              p: 4,
-              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20,20,20,0.9) 100%)',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
-              borderRadius: 3,
-              textAlign: 'center'
+              textAlign: 'center', 
+              mb: 6,
+              fontWeight: 700,
+              color: currentThemeConfig.textPrimary
             }}
           >
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                color: 'white', 
-                mb: 3,
-                fontWeight: 600
-              }}
-            >
-              Technologies We Master
-            </Typography>
-            
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
-              {[
-                'Substrate', 'Rust', 'Solidity', 'Vyper', 'Python', 'TensorFlow',
-                'Golang', 'React', 'Node.js', 'Polkadot', 'Ethereum', 'Cosmos SDK',
-                'Hyperledger', 'Web3.js', 'Ethers.js', 'Machine Learning', 'AI Automation'
-              ].map((tech, index) => (
-                <Chip 
-                  key={index}
-                  label={tech} 
-                  sx={{ 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                    color: 'primary.light',
-                    fontWeight: 500,
-                    '&:hover': {
-                      backgroundColor: 'rgba(212, 175, 55, 0.2)',
-                      transform: 'translateY(-2px)'
-                    },
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              ))}
-            </Box>
-          </Card>
-        </Box>
-      </Container>
+            Technology Arsenal
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
+            {technologies.map((tech, index) => (
+              <Chip
+                key={index}
+                label={tech}
+                variant="outlined"
+                sx={{
+                  borderColor: currentThemeConfig.primary,
+                  color: currentThemeConfig.primary,
+                  backgroundColor: 'transparent',
+                  fontWeight: 500,
+                  fontSize: '0.9rem',
+                  '&:hover': {
+                    borderColor: currentThemeConfig.secondary,
+                    color: currentThemeConfig.secondary,
+                  }
+                }}
+              />
+            ))}
+          </Box>
+        </Container>
+      </Box>
 
-      {/* LinkedIn Integration Section */}
-      <LinkedInSection />
+      {/* LinkedIn Section */}
+      <Box sx={{ py: 8, backgroundColor: currentThemeConfig.background }}>
+        <Container maxWidth="lg">
+          <LinkedInSection variant="full" />
+        </Container>
+      </Box>
     </Box>
   );
 };

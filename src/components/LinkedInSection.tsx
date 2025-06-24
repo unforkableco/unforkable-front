@@ -16,6 +16,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BusinessIcon from '@mui/icons-material/Business';
 import PeopleIcon from '@mui/icons-material/People';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface LinkedInSectionProps {
   variant?: 'full' | 'compact';
@@ -23,6 +24,7 @@ interface LinkedInSectionProps {
 
 const LinkedInSection: React.FC<LinkedInSectionProps> = ({ variant = 'full' }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { currentThemeConfig } = useTheme();
 
   useEffect(() => {
     // Simulate loading time for LinkedIn content
@@ -312,7 +314,7 @@ const LinkedInSection: React.FC<LinkedInSectionProps> = ({ variant = 'full' }) =
               elevation={8}
               sx={{
                 background: 'linear-gradient(135deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.8) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                border: `1px solid ${currentThemeConfig.primary}33`,
                 borderRadius: 3,
                 p: 4,
                 height: '100%'

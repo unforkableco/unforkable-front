@@ -4,10 +4,12 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SecurityIcon from '@mui/icons-material/Security';
 import useContent from '../hooks/useContent';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HeroSection: React.FC = () => {
   const content = useContent();
   const { title, subtitle, primaryButton, secondaryButton } = content.hero;
+  const { currentThemeConfig } = useTheme();
 
   return (
     <Box 
@@ -17,75 +19,12 @@ const HeroSection: React.FC = () => {
         height: '85vh', 
         display: 'flex', 
         alignItems: 'center', 
-        backgroundColor: 'black',
-        color: 'white',
+        backgroundColor: currentThemeConfig.background,
+        color: currentThemeConfig.textPrimary,
         position: 'relative',
         overflow: 'hidden'
       }}
     >
-      {/* Animated Background Elements */}
-      <Box 
-        className="hero-bg-animations"
-        sx={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          zIndex: 1,
-        }}
-      >
-        {/* Floating geometric shapes */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '10%',
-            right: '10%',
-            width: '100px',
-            height: '100px',
-            borderRadius: '30%',
-            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05))',
-            animation: 'float 6s ease-in-out infinite',
-            '@keyframes float': {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-15px) rotate(180deg)' },
-            },
-          }}
-        />
-        
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '15%',
-            left: '5%',
-            width: '60px',
-            height: '60px',
-            borderRadius: '50%',
-            border: '2px solid rgba(212, 175, 55, 0.3)',
-            animation: 'pulse 4s ease-in-out infinite',
-            '@keyframes pulse': {
-              '0%, 100%': { transform: 'scale(1)', opacity: 0.3 },
-              '50%': { transform: 'scale(1.2)', opacity: 0.6 },
-            },
-          }}
-        />
-
-        {/* Grid pattern overlay */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `
-              linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px',
-            opacity: 0.2,
-          }}
-        />
-      </Box>
-
       <Container maxWidth="lg" className="hero-container" sx={{ position: 'relative', zIndex: 2 }}>
         <Grid container spacing={4} alignItems="center" className="hero-grid">
           <Grid item xs={12} md={7} className="hero-content-grid">
@@ -103,17 +42,17 @@ const HeroSection: React.FC = () => {
                   sx={{
                     p: 1,
                     borderRadius: '50%',
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05))',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    background: `linear-gradient(135deg, ${currentThemeConfig.primary}33, ${currentThemeConfig.primary}0D)`,
+                    border: `1px solid ${currentThemeConfig.primary}4D`,
                     mr: 2,
                   }}
                 >
-                  <img 
-                    src="/images/logo - !f (orange - no bg).png" 
-                    alt="Unforkable Logo" 
-                    className="hero-logo-symbol"
+                <img 
+                  src="/images/logo - !f (orange - no bg).png" 
+                  alt="Unforkable Logo" 
+                  className="hero-logo-symbol"
                     style={{ height: '30px' }} 
-                  />
+                />
                 </Box>
                 <img 
                   src="/images/logo - unforkable - white.png" 
@@ -133,7 +72,7 @@ const HeroSection: React.FC = () => {
                   fontWeight: 800,
                   mb: 2,
                   lineHeight: 1.2,
-                  background: 'linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 1) 100%)',
+                  background: `linear-gradient(135deg, #ffffff 0%, ${currentThemeConfig.primary} 100%)`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -152,14 +91,14 @@ const HeroSection: React.FC = () => {
                   fontWeight: 400,
                   opacity: 0.9,
                   maxWidth: '600px',
-                  color: 'text.secondary',
+                  color: currentThemeConfig.textSecondary,
                   fontSize: { xs: '1rem', md: '1.1rem' },
                   lineHeight: 1.5,
                 }}
               >
                 {subtitle}
               </Typography>
-
+              
               {/* Feature highlights */}
               <Box 
                 sx={{ 
@@ -182,11 +121,11 @@ const HeroSection: React.FC = () => {
                       alignItems: 'center',
                       p: 1,
                       borderRadius: 2,
-                      background: 'rgba(212, 175, 55, 0.1)',
-                      border: '1px solid rgba(212, 175, 55, 0.2)',
+                      background: `${currentThemeConfig.primary}1A`,
+                      border: `1px solid ${currentThemeConfig.primary}33`,
                       transition: 'all 0.3s ease',
                       '&:hover': {
-                        background: 'rgba(212, 175, 55, 0.2)',
+                        background: `${currentThemeConfig.primary}33`,
                         transform: 'translateY(-2px)',
                       },
                     }}
@@ -200,26 +139,22 @@ const HeroSection: React.FC = () => {
                   </Box>
                 ))}
               </Box>
-              
-              {/* Enhanced CTA Buttons */}
-              <Box className="hero-cta-buttons">
+
+              {/* CTA Buttons */}
+              <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
                 <Button 
                   variant="contained" 
-                  color="primary" 
-                  size="medium" 
-                  href="#contact"
-                  className="hero-primary-button"
+                  size="large" 
                   sx={{ 
-                    py: 1.5, 
+                    background: `linear-gradient(135deg, ${currentThemeConfig.primary} 0%, ${currentThemeConfig.secondary} 100%)`,
                     px: 4,
-                    mr: 2,
-                    borderRadius: 2,
+                    py: 2,
+                    fontSize: '1.1rem',
                     fontWeight: 600,
-                    textTransform: 'none',
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 1) 0%, rgba(255, 193, 7, 1) 100%)',
-                    transition: 'all 0.3s ease',
+                    boxShadow: `0 8px 32px ${currentThemeConfig.primary}4D`,
                     '&:hover': {
                       transform: 'translateY(-2px)',
+                      boxShadow: `0 12px 40px ${currentThemeConfig.primary}66`,
                     }
                   }}
                 >
@@ -227,22 +162,19 @@ const HeroSection: React.FC = () => {
                 </Button>
                 <Button 
                   variant="outlined" 
-                  size="medium"
-                  href="#services"
-                  className="hero-secondary-button" 
+                  size="large"
                   sx={{ 
-                    py: 1.5, 
-                    px: 3,
-                    borderRadius: 2,
-                    fontWeight: 600,
-                    textTransform: 'none',
-                    color: 'white',
                     borderColor: 'primary.main',
-                    transition: 'all 0.3s ease',
+                    color: 'primary.main',
+                    px: 4,
+                    py: 2,
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    borderWidth: 2,
                     '&:hover': {
-                      borderColor: 'primary.light',
-                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                      transform: 'translateY(-2px)',
+                      borderWidth: 2,
+                      backgroundColor: `${currentThemeConfig.primary}1A`,
+                      transform: 'translateY(-2px)'
                     }
                   }}
                 >
@@ -252,19 +184,18 @@ const HeroSection: React.FC = () => {
             </Box>
           </Grid>
           
-          {/* Tech Network Visualization - Updated */}
-          <Grid item xs={12} md={5} className="hero-visual-grid">
-            <Box
-              sx={{
+          <Grid item xs={12} md={5}>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                justifyContent: 'center',
                 position: 'relative',
                 height: '400px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                alignItems: 'center'
               }}
             >
               {/* Tech Nodes Network */}
-              <Box
+              <Box 
                 className="tech-network"
                 sx={{
                   position: 'relative',
@@ -272,7 +203,7 @@ const HeroSection: React.FC = () => {
                   height: '100%',
                 }}
               >
-                {/* Connection Lines */}
+                {/* Connection Lines with improved animations */}
                 <svg
                   style={{
                     position: 'absolute',
@@ -283,28 +214,297 @@ const HeroSection: React.FC = () => {
                     zIndex: 1,
                   }}
                 >
-                  {/* Central hub connections */}
-                  <line x1="50%" y1="50%" x2="20%" y2="20%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="50%" y1="50%" x2="80%" y2="25%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="50%" y1="50%" x2="15%" y2="70%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="50%" y1="50%" x2="85%" y2="75%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3.5s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="50%" y1="50%" x2="30%" y2="85%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.8s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="50%" y1="50%" x2="70%" y2="10%" stroke="rgba(212, 175, 55, 0.3)" strokeWidth="1" opacity="0.6">
-                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3.2s" repeatCount="indefinite" />
-                  </line>
+                  <defs>
+                    {/* Gradient definitions for dynamic lines */}
+                    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor={currentThemeConfig.primary} stopOpacity="0.8">
+                        <animate attributeName="stop-opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="50%" stopColor={currentThemeConfig.secondary} stopOpacity="0.6">
+                        <animate attributeName="stop-opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite" />
+                      </stop>
+                      <stop offset="100%" stopColor={currentThemeConfig.primary} stopOpacity="0.4">
+                        <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3.5s" repeatCount="indefinite" />
+                      </stop>
+                    </linearGradient>
+                    
+                    <linearGradient id="secondaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor={currentThemeConfig.secondary} stopOpacity="0.6" />
+                      <stop offset="100%" stopColor={currentThemeConfig.primary} stopOpacity="0.3" />
+                    </linearGradient>
+
+                    {/* Animated dash patterns */}
+                    <pattern id="flowPattern" patternUnits="userSpaceOnUse" width="20" height="4">
+                      <rect width="20" height="4" fill="none" />
+                      <circle cx="2" cy="2" r="1" fill={currentThemeConfig.primary} opacity="0.8">
+                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="10" cy="2" r="1" fill={currentThemeConfig.secondary} opacity="0.6">
+                        <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="18" cy="2" r="1" fill={currentThemeConfig.primary} opacity="0.4">
+                        <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                      </circle>
+                    </pattern>
+                  </defs>
+
+                  {/* Primary curved connections from center to main nodes */}
+                  <path 
+                    d="M 50% 50% Q 35% 32% 20% 15%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="5,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-16" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="2;4;2" dur="5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 65% 35% 80% 20%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="8,4"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-24" dur="3.5s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="3;5;3" dur="4.5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 32% 57% 15% 65%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="6,2"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-16" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="2;4;2" dur="4s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 67% 60% 85% 70%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="4,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-14" dur="4.5s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="2;3;2" dur="3.8s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 37% 67% 25% 85%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="7,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-20" dur="3.8s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="3;5;3" dur="4.2s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 62% 29% 75% 8%" 
+                    stroke="url(#primaryGradient)" 
+                    strokeWidth="3" 
+                    fill="none"
+                    opacity="0.8"
+                    strokeDasharray="5,4"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-18" dur="4.2s" repeatCount="indefinite" />
+                    <animate attributeName="stroke-width" values="2;4;2" dur="3.5s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Complex secondary connections between outer nodes */}
+                  <path 
+                    d="M 20% 15% Q 50% 5% 80% 20%" 
+                    stroke="url(#secondaryGradient)" 
+                    strokeWidth="2" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="3,6"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-18" dur="6s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="8s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 15% 65% Q 20% 75% 25% 85%" 
+                    stroke="url(#secondaryGradient)" 
+                    strokeWidth="2" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="4,5"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-18" dur="5.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="7s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 80% 20% Q 90% 45% 85% 70%" 
+                    stroke="url(#secondaryGradient)" 
+                    strokeWidth="2" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="2,4"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-12" dur="7s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="6.5s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Tertiary connections to smaller nodes with organic curves */}
+                  <path 
+                    d="M 50% 50% Q 29% 42% 8% 35%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="2,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-10" dur="5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 71% 52% 92% 45%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="3,4"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-14" dur="4.5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 72% 62% 75% 55%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="2,2"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="3.5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 42% 75% 35% 50%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="1,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="4s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 47% 37% 45% 25%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="2,4"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-12" dur="3.8s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 70% 79% 60% 92%" 
+                    stroke={`${currentThemeConfig.primary}60`} 
+                    strokeWidth="1.5" 
+                    fill="none"
+                    opacity="0.5"
+                    strokeDasharray="3,2"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-10" dur="4.2s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Micro connections to tiny nodes */}
+                  <path 
+                    d="M 50% 50% Q 45% 31% 40% 12%" 
+                    stroke={`${currentThemeConfig.secondary}80`} 
+                    strokeWidth="1" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="1,2"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-6" dur="3s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 55% 62% 60% 75%" 
+                    stroke={`${currentThemeConfig.secondary}80`} 
+                    strokeWidth="1" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="2,1"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-6" dur="3.5s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 62% 40% 65% 30%" 
+                    stroke={`${currentThemeConfig.secondary}80`} 
+                    strokeWidth="1" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="1,1"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-4" dur="2.8s" repeatCount="indefinite" />
+                  </path>
+
+                  <path 
+                    d="M 50% 50% Q 72% 62% 55% 75%" 
+                    stroke={`${currentThemeConfig.secondary}80`} 
+                    strokeWidth="1" 
+                    fill="none"
+                    opacity="0.4"
+                    strokeDasharray="1,3"
+                  >
+                    <animate attributeName="stroke-dashoffset" values="0;-8" dur="4s" repeatCount="indefinite" />
+                  </path>
+
+                  {/* Dynamic energy pulses */}
+                  <circle r="3" fill={currentThemeConfig.primary} opacity="0.9">
+                    <animateMotion dur="5s" repeatCount="indefinite">
+                      <path d="M 50% 50% Q 35% 32% 20% 15%" />
+                    </animateMotion>
+                    <animate attributeName="r" values="2;5;2" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle r="2" fill={currentThemeConfig.secondary} opacity="0.8">
+                    <animateMotion dur="6s" repeatCount="indefinite">
+                      <path d="M 50% 50% Q 65% 35% 80% 20%" />
+                    </animateMotion>
+                    <animate attributeName="r" values="1;4;1" dur="6s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.8;0" dur="6s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle r="2" fill={currentThemeConfig.primary} opacity="0.7">
+                    <animateMotion dur="4s" repeatCount="indefinite">
+                      <path d="M 50% 50% Q 32% 57% 15% 65%" />
+                    </animateMotion>
+                    <animate attributeName="r" values="1;3;1" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.9;0" dur="4s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle r="1.5" fill={currentThemeConfig.secondary} opacity="0.6">
+                    <animateMotion dur="7s" repeatCount="indefinite">
+                      <path d="M 20% 15% Q 50% 5% 80% 20%" />
+                    </animateMotion>
+                    <animate attributeName="r" values="1;3;1" dur="7s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;0.7;0" dur="7s" repeatCount="indefinite" />
+                  </circle>
                 </svg>
 
-                {/* Central Node - Unforkable Logo */}
+                {/* Central Node - Unforkable Logo with orbital ring */}
                 <Box
                   className="central-node"
                   sx={{
@@ -312,20 +512,41 @@ const HeroSection: React.FC = () => {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: '80px',
-                    height: '80px',
+                    width: '100px',
+                    height: '100px',
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 70%)',
-                    border: '2px solid rgba(212, 175, 55, 0.5)',
+                    background: `radial-gradient(circle, ${currentThemeConfig.primary}60 0%, ${currentThemeConfig.primary}20 70%, transparent 100%)`,
+                    border: `3px solid ${currentThemeConfig.primary}B3`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 0 20px rgba(212, 175, 55, 0.4)',
-                    animation: 'pulse 2s ease-in-out infinite',
+                    boxShadow: `0 0 30px ${currentThemeConfig.primary}80, inset 0 0 20px ${currentThemeConfig.primary}40`,
+                    animation: 'centralPulse 3s ease-in-out infinite',
                     zIndex: 3,
-                    '@keyframes pulse': {
-                      '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.4)' },
-                      '50%': { boxShadow: '0 0 30px rgba(212, 175, 55, 0.6)' },
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: '-10px',
+                      left: '-10px',
+                      right: '-10px',
+                      bottom: '-10px',
+                      borderRadius: '50%',
+                      border: `1px solid ${currentThemeConfig.primary}40`,
+                      animation: 'orbitalRing 8s linear infinite',
+                    },
+                    '@keyframes centralPulse': {
+                      '0%, 100%': { 
+                        boxShadow: `0 0 30px ${currentThemeConfig.primary}80, inset 0 0 20px ${currentThemeConfig.primary}40`,
+                        transform: 'translate(-50%, -50%) scale(1)'
+                      },
+                      '50%': { 
+                        boxShadow: `0 0 50px ${currentThemeConfig.primary}CC, inset 0 0 30px ${currentThemeConfig.primary}60`,
+                        transform: 'translate(-50%, -50%) scale(1.05)'
+                      },
+                    },
+                    '@keyframes orbitalRing': {
+                      '0%': { transform: 'rotate(0deg)' },
+                      '100%': { transform: 'rotate(360deg)' },
                     },
                   }}
                 >
@@ -333,21 +554,22 @@ const HeroSection: React.FC = () => {
                     src="/images/logo - !f (orange - no bg).png" 
                     alt="Unforkable" 
                     style={{ 
-                      width: '50px', 
+                      width: '60px', 
                       height: 'auto',
-                      filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.5))',
+                      filter: `drop-shadow(0 0 15px ${currentThemeConfig.primary}B3)`,
+                      animation: 'logoFloat 4s ease-in-out infinite',
                     }} 
                   />
                 </Box>
 
-                {/* Tech Nodes */}
+                {/* Primary Tech Nodes - Main technologies */}
                 {[
-                  { tech: 'Substrate', pos: { top: '15%', left: '15%' }, delay: '0s' },
-                  { tech: 'Solidity', pos: { top: '20%', right: '15%' }, delay: '0.5s' },
-                  { tech: 'DeFi', pos: { bottom: '25%', left: '10%' }, delay: '1s' },
-                  { tech: 'Rust', pos: { bottom: '20%', right: '10%' }, delay: '1.5s' },
-                  { tech: 'React', pos: { bottom: '10%', left: '25%' }, delay: '2s' },
-                  { tech: 'Web3', pos: { top: '5%', left: '65%' }, delay: '2.5s' },
+                  { tech: 'Substrate', pos: { top: '15%', left: '20%' }, delay: '0s', category: 'blockchain' },
+                  { tech: 'Solidity', pos: { top: '20%', right: '20%' }, delay: '0.8s', category: 'smart-contract' },
+                  { tech: 'DeFi', pos: { bottom: '35%', left: '15%' }, delay: '1.6s', category: 'protocol' },
+                  { tech: 'AI Agents', pos: { bottom: '30%', right: '15%' }, delay: '2.4s', category: 'ai' },
+                  { tech: 'TypeScript', pos: { bottom: '15%', left: '25%' }, delay: '3.2s', category: 'frontend' },
+                  { tech: 'Rust', pos: { top: '8%', left: '75%' }, delay: '4s', category: 'systems' },
                 ].map((node, index) => (
                   <Box
                     key={index}
@@ -355,31 +577,51 @@ const HeroSection: React.FC = () => {
                     sx={{
                       position: 'absolute',
                       ...node.pos,
-                      width: '60px',
-                      height: '60px',
+                      width: '75px',
+                      height: '75px',
                       borderRadius: '50%',
-                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05))',
-                      border: '1px solid rgba(212, 175, 55, 0.4)',
+                      background: `linear-gradient(135deg, ${currentThemeConfig.primary}40, ${currentThemeConfig.primary}10)`,
+                      border: `2px solid ${currentThemeConfig.primary}80`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '0.7rem',
-                      fontWeight: 600,
-                      color: 'rgba(212, 175, 55, 0.9)',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      color: `${currentThemeConfig.primary}F0`,
                       textAlign: 'center',
-                      boxShadow: '0 0 15px rgba(212, 175, 55, 0.2)',
-                      animation: `float 4s ease-in-out infinite ${node.delay}`,
-                      transition: 'all 0.3s ease',
+                      boxShadow: `0 0 20px ${currentThemeConfig.primary}50`,
+                      animation: `techFloat 6s ease-in-out infinite ${node.delay}`,
+                      transition: 'all 0.4s ease',
                       zIndex: 2,
                       cursor: 'default',
-                      '@keyframes float': {
-                        '0%, 100%': { transform: 'translateY(0px)' },
-                        '50%': { transform: 'translateY(-10px)' },
+                      backdropFilter: 'blur(5px)',
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: '-5px',
+                        left: '-5px',
+                        right: '-5px',
+                        bottom: '-5px',
+                        borderRadius: '50%',
+                        border: `1px solid ${currentThemeConfig.primary}30`,
+                        animation: `nodeRing 4s linear infinite ${node.delay}`,
+                      },
+                      '@keyframes techFloat': {
+                        '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                        '25%': { transform: 'translateY(-8px) rotate(2deg)' },
+                        '50%': { transform: 'translateY(-15px) rotate(0deg)' },
+                        '75%': { transform: 'translateY(-8px) rotate(-2deg)' },
+                      },
+                      '@keyframes nodeRing': {
+                        '0%': { transform: 'rotate(0deg) scale(1)' },
+                        '50%': { transform: 'rotate(180deg) scale(1.1)' },
+                        '100%': { transform: 'rotate(360deg) scale(1)' },
                       },
                       '&:hover': {
-                        transform: 'scale(1.1) translateY(-5px)',
-                        boxShadow: '0 0 25px rgba(212, 175, 55, 0.4)',
-                        borderColor: 'rgba(212, 175, 55, 0.7)',
+                        transform: 'scale(1.15) translateY(-10px)',
+                        boxShadow: `0 0 35px ${currentThemeConfig.primary}80`,
+                        borderColor: `${currentThemeConfig.primary}FF`,
+                        background: `linear-gradient(135deg, ${currentThemeConfig.primary}60, ${currentThemeConfig.secondary}40)`,
                       },
                     }}
                   >
@@ -387,11 +629,14 @@ const HeroSection: React.FC = () => {
                   </Box>
                 ))}
 
-                {/* Additional smaller nodes */}
+                {/* Secondary Tech Nodes - Supporting technologies */}
                 {[
-                  { tech: 'TS', pos: { top: '40%', left: '5%' }, size: '40px' },
-                  { tech: 'AWS', pos: { top: '60%', right: '5%' }, size: '40px' },
-                  { tech: 'ETH', pos: { top: '35%', right: '30%' }, size: '40px' },
+                  { tech: 'ElizaOS', pos: { top: '35%', left: '8%' }, size: '50px', category: 'ai' },
+                  { tech: 'Foundry', pos: { top: '45%', right: '8%' }, size: '50px', category: 'tooling' },
+                  { tech: 'Chainlink', pos: { top: '55%', right: '25%' }, size: '50px', category: 'oracle' },
+                  { tech: 'Uniswap', pos: { bottom: '50%', left: '35%' }, size: '50px', category: 'defi' },
+                  { tech: 'React', pos: { top: '25%', left: '45%' }, size: '45px', category: 'frontend' },
+                  { tech: 'Python', pos: { bottom: '8%', right: '40%' }, size: '45px', category: 'backend' },
                 ].map((node, index) => (
                   <Box
                     key={`small-${index}`}
@@ -402,19 +647,69 @@ const HeroSection: React.FC = () => {
                       width: node.size,
                       height: node.size,
                       borderRadius: '50%',
-                      background: 'rgba(212, 175, 55, 0.1)',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      background: `${currentThemeConfig.primary}25`,
+                      border: `1px solid ${currentThemeConfig.primary}60`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '0.6rem',
-                      fontWeight: 500,
-                      color: 'rgba(212, 175, 55, 0.7)',
-                      animation: `float 3s ease-in-out infinite ${index * 0.7}s`,
-                      zIndex: 1,
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: `${currentThemeConfig.primary}CC`,
+                      textAlign: 'center',
+                      animation: `smallFloat 4s ease-in-out infinite ${index * 0.7}s`,
+                      zIndex: 2,
+                      backdropFilter: 'blur(3px)',
+                      '@keyframes smallFloat': {
+                        '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+                        '33%': { transform: 'translateY(-5px) scale(1.05)' },
+                        '66%': { transform: 'translateY(-8px) scale(0.95)' },
+                      },
                       '&:hover': {
+                        color: currentThemeConfig.primary,
+                        background: `${currentThemeConfig.primary}40`,
                         transform: 'scale(1.1)',
-                        color: 'rgba(212, 175, 55, 1)',
+                        borderColor: currentThemeConfig.primary,
+                      },
+                    }}
+                  >
+                    {node.tech}
+                  </Box>
+                ))}
+
+                {/* Micro nodes for additional technologies */}
+                {[
+                  { tech: 'LLM', pos: { top: '12%', left: '40%' } },
+                  { tech: 'RAG', pos: { top: '75%', left: '60%' } },
+                  { tech: 'n8n', pos: { top: '30%', right: '35%' } },
+                  { tech: 'TWAP', pos: { bottom: '25%', right: '45%' } },
+                ].map((node, index) => (
+                  <Box
+                    key={`micro-${index}`}
+                    sx={{
+                      position: 'absolute',
+                      ...node.pos,
+                      width: '35px',
+                      height: '35px',
+                      borderRadius: '50%',
+                      background: `${currentThemeConfig.secondary}30`,
+                      border: `1px solid ${currentThemeConfig.secondary}50`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.55rem',
+                      fontWeight: 500,
+                      color: `${currentThemeConfig.secondary}E0`,
+                      textAlign: 'center',
+                      animation: `microFloat 3s ease-in-out infinite ${index * 0.5}s`,
+                      zIndex: 1,
+                      '@keyframes microFloat': {
+                        '0%, 100%': { opacity: 0.6, transform: 'scale(1)' },
+                        '50%': { opacity: 1, transform: 'scale(1.1)' },
+                      },
+                      '&:hover': {
+                        opacity: 1,
+                        color: currentThemeConfig.secondary,
+                        background: `${currentThemeConfig.secondary}50`,
                       },
                     }}
                   >

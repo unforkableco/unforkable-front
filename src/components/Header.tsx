@@ -12,44 +12,47 @@ import {
   Link as MuiLink
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-
-interface NavButtonProps {
-  href: string;
-  onClick?: () => void;
-}
-
-const NavButton: React.FC<NavButtonProps & { children: React.ReactNode }> = ({ 
-  href, 
-  onClick, 
-  children 
-}) => (
-  <MuiLink 
-    href={href} 
-    component="a" 
-    underline="none" 
-    onClick={onClick}
-    className="nav-link"
-    sx={{ 
-      color: 'white', 
-      mx: 1,
-      px: 2,
-      py: 1,
-      borderRadius: 1,
-      transition: 'all 0.3s',
-      '&:hover': { 
-        backgroundColor: 'rgba(212, 175, 55, 0.1)',
-        color: 'primary.main'
-      },
-    }}
-  >
-    {children}
-  </MuiLink>
-);
+import { useTheme as useCustomTheme } from '../contexts/ThemeContext';
 
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { currentThemeConfig } = useCustomTheme();
+
+  interface NavButtonProps {
+    href: string;
+    onClick?: () => void;
+    children: React.ReactNode;
+  }
+
+  const NavButton: React.FC<NavButtonProps> = ({ 
+    href, 
+    onClick, 
+    children 
+  }) => (
+    <MuiLink 
+      href={href} 
+      component="a" 
+      underline="none" 
+      onClick={onClick}
+      className="nav-link"
+      sx={{ 
+        color: 'white', 
+        mx: 1,
+        px: 2,
+        py: 1,
+        borderRadius: 1,
+        transition: 'all 0.3s',
+        '&:hover': { 
+          backgroundColor: `${currentThemeConfig.primary}1A`,
+          color: 'primary.main'
+        },
+      }}
+    >
+      {children}
+    </MuiLink>
+  );
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -102,7 +105,7 @@ const Header: React.FC = () => {
               PaperProps={{
                 sx: {
                   backgroundColor: 'background.paper',
-                  border: '1px solid rgba(212, 175, 55, 0.2)'
+                  border: `1px solid ${currentThemeConfig.primary}33`
                 }
               }}
             >
@@ -115,7 +118,7 @@ const Header: React.FC = () => {
                   className={`mobile-menu-item mobile-menu-item-${item.label.toLowerCase()}`}
                   sx={{ 
                     '&:hover': { 
-                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                      backgroundColor: `${currentThemeConfig.primary}1A`,
                       color: 'primary.main'
                     }
                   }}
@@ -123,15 +126,7 @@ const Header: React.FC = () => {
                   {item.label}
                 </MenuItem>
               ))}
-              <MenuItem className="mobile-menu-item mobile-menu-item-action">
-                <Button 
-                  variant="contained" 
-                  color="primary"
-                  className="mobile-contact-button"
-                >
-                  Get Started
-                </Button>
-              </MenuItem>
+
             </Menu>
           </Box>
         ) : (
@@ -146,15 +141,6 @@ const Header: React.FC = () => {
                 </NavButton>
               ))}
             </Box>
-            <Button 
-              variant="contained" 
-              color="primary" 
-              href="#contact"
-              className="contact-button"
-              sx={{ ml: 2 }}
-            >
-              Get Started
-            </Button>
           </Box>
         )}
       </Toolbar>
