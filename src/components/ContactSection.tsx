@@ -8,8 +8,20 @@ import { useTheme } from '../contexts/ThemeContext';
 
 const ContactSection: React.FC = () => {
   const content = useContent();
-  const { title, contactInfo } = content.contact;
   const { currentThemeConfig } = useTheme();
+
+  // Fallback contact data since we don't have a contact form
+  const contactData = content.contact || {
+    title: "Get In Touch",
+    contactInfo: [
+      {
+        title: "Email",
+        value: "contact@unforkable.co"
+      }
+    ]
+  };
+
+  const { title, contactInfo } = contactData;
 
   const getIcon = (title: string) => {
     switch (title.toLowerCase()) {

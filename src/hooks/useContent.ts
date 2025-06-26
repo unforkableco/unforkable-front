@@ -44,7 +44,7 @@ export interface Content {
       label: string;
     }[];
   };
-  contact: {
+  contact?: {
     overline: string;
     title: string;
     description: string;

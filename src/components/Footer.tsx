@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Divider, IconButton } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useContent from '../hooks/useContent';
 
@@ -11,8 +10,6 @@ const Footer: React.FC = () => {
 
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
-      case 'github':
-        return <GitHubIcon />;
       case 'linkedin':
         return <LinkedInIcon />;
       default:

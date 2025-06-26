@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, Avatar } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import useContent from '../hooks/useContent';
@@ -12,20 +11,19 @@ const ContactPage: React.FC = () => {
   const content = useContent();
   const { currentThemeConfig } = useTheme();
 
+  // Fallback contact data since we don't have a contact form
+  const contactData = content.contact || {
+    title: "Let's Build Something",
+    description: "Ready to ship your blockchain project? Need a technical co-founder? Let's talk code."
+  };
+
   const contactMethods = [
     {
       icon: <EmailIcon />,
       title: 'Email Us',
-      info: content.contact.contactInfo.find(info => info.title === 'Email')?.value || 'contact@unforkable.co',
+      info: 'contact@unforkable.co',
       description: 'The old-school way. We actually read our emails.',
-      action: () => window.open(`mailto:${content.contact.contactInfo.find(info => info.title === 'Email')?.value || 'contact@unforkable.co'}`, '_blank')
-    },
-    {
-      icon: <GitHubIcon />,
-      title: 'GitHub',
-      info: 'View Our Code',
-      description: 'See what we\'ve been shipping. Code speaks louder than words.',
-      action: () => window.open(content.social.links.find(link => link.platform === 'github')?.url || '#', '_blank')
+      action: () => window.open('mailto:contact@unforkable.co', '_blank')
     },
     {
       icon: <LinkedInIcon />,
@@ -89,7 +87,7 @@ const ContactPage: React.FC = () => {
               pt: 4
             }}
           >
-            {content.contact.title}
+            {contactData.title}
           </Typography>
           <Typography 
             variant="h5" 
@@ -100,14 +98,14 @@ const ContactPage: React.FC = () => {
               lineHeight: 1.6
             }}
           >
-            {content.contact.description}
+            {contactData.description}
           </Typography>
         </Box>
 
         {/* Contact Methods */}
-        <Grid container spacing={4} sx={{ mb: 8 }}>
+        <Grid container spacing={4} sx={{ mb: 8, justifyContent: 'center' }}>
           {contactMethods.map((method, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Grid item xs={12} md={6} lg={4} key={index}>
               <Card 
                 elevation={8}
                 sx={{ 
