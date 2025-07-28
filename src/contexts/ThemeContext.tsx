@@ -24,7 +24,7 @@ interface ThemeProviderProps {
 }
 
 export const CustomThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [currentThemeName, setCurrentThemeName] = useState<string>('Steampunk Bronze');
+  const [currentThemeName, setCurrentThemeName] = useState<string>('Arctic Ice');
 
   // Load theme from localStorage on mount
   useEffect(() => {

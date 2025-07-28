@@ -6,16 +6,15 @@ import GroupIcon from '@mui/icons-material/Group';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import useContent from '../hooks/useContent';
 import { useTheme } from '../contexts/ThemeContext';
-import LinkedInSection from '../components/LinkedInSection';
 
 const AboutPage: React.FC = () => {
   const content = useContent();
   const { currentThemeConfig } = useTheme();
 
   const stats = [
-    { icon: <BusinessIcon />, label: 'Founded', value: '2016' },
-    { icon: <TrendingUpIcon />, label: 'Projects Delivered', value: '50+' },
-    { icon: <SecurityIcon />, label: 'Security Record', value: '100%' },
+    { icon: <BusinessIcon />, label: 'Founded', value: '2021' },
+    { icon: <TrendingUpIcon />, label: 'Projects Delivered', value: '13' },
+    { icon: <SecurityIcon />, label: 'Succesfull audits', value: '8' },
     { icon: <GroupIcon />, label: 'Global Team', value: '24/7' }
   ];
 
@@ -282,12 +281,6 @@ const AboutPage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* LinkedIn Section */}
-      <Box sx={{ py: 8, backgroundColor: currentThemeConfig.background }}>
-        <Container maxWidth="lg">
-          <LinkedInSection variant="full" />
-        </Container>
-      </Box>
     </Box>
   );
 };

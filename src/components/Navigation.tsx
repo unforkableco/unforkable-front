@@ -57,7 +57,7 @@ const Navigation: React.FC = () => {
             src="/images/logo - !f (orange - no bg).png"
             sx={{ width: 32, height: 32, mr: 1 }}
           />
-          <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700 }}>
+          <Typography variant="h6" sx={{ color: '#D4AF37', fontWeight: 700 }}>
             Unforkable
           </Typography>
         </Box>
@@ -126,7 +126,7 @@ const Navigation: React.FC = () => {
               variant="h5"
               sx={{
                 fontWeight: 800,
-                color: 'primary.main',
+                color: '#D4AF37',
                 display: { xs: 'none', sm: 'block' }
               }}
             >
