@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Your Technical Co-Founder for Web3 & AI Innovation",
-    "subtitle": "We build custom blockchains, DeFi protocols, and AI systems that actually work. No buzzwords, no fluff - just code that ships and scales.",
+    "subtitle": "We build custom blockchains, DeFi protocols, and AI systems.",
     "primaryButton": "Let's Build Something",
     "secondaryButton": "See What We've Shipped"
   },
@@ -53,16 +53,8 @@
         "description": "Migrate your project from one blockchain to another without losing user funds or data. We've handled complex migrations including snapshot management, token swaps, and validator transitions."
       },
       {
-        "title": "Oracle Integration & Price Feeds",
-        "description": "Advanced oracle systems combining Chainlink price feeds with custom TWAP calculations. We build sophisticated pricing mechanisms that handle market volatility and provide accurate collateral valuations for DeFi protocols."
-      },
-      {
-        "title": "Automated Trading & DeFi Integration",
-        "description": "Automated trading systems integrated with Uniswap V2/V3, Balancer, and other DEXs. We build smart contracts that automatically execute trades based on rebase events, market conditions, and sophisticated scoring algorithms."
-      },
-      {
-        "title": "Token Launch Platforms & Factory Systems",
-        "description": "Sophisticated fundraising platforms with upgradeable factory architectures, multiple campaign types, automated liquidity provisioning, and comprehensive vesting systems. We build extensible token launch ecosystems using UUPS proxy patterns and strategy-based campaign management."
+        "title": "Automated Trading & Volume bots",
+        "description": "Automated trading systems integrated with Uniswap V2/V3, Balancer, and other DEXs and CEXs. We build smart contracts that automatically execute trades based on rebase events, market conditions, and sophisticated scoring algorithms."
       }
     ]
   },
@@ -92,12 +84,10 @@
         "technologies": ["Substrate", "Rust", "EVM Precompiles", "Custom Pallets", "Wrapped Tokens"],
         "logoSrc": "/images/projects/substrate-logo.png",
         "keyFeatures": [
-          "Custom pwROKO wrapped token system with 1:1 ROKO backing",
-          "Governance-controlled smart contract deployment management",
           "EVM precompiles for seamless Ethereum tool integration",
           "Enhanced staking system using wrapped tokens",
           "Circuit breaker security patterns and slashing coordination",
-          "Future Timebeat system for nanosecond precision timing"
+          "Timebeat system for nanosecond precision timing and timestamping of transactions and events"
         ]
       },
       {
@@ -110,13 +100,14 @@
       },
       {
         "title": "RENAV2",
-        "description": "Complete blockchain ecosystem migration and development. Built new smart contracts, integrated Web3 frontend, deployed testnet infrastructure, and handled mainnet deployment with user migration.",
+        "description": "Complete blockchain ecosystem migration and development. Built new smart contracts, integrated Web3 frontend, deployed infrastructure, and handled mainnet deployment with user migration.",
         "technologies": ["Substrate", "React", "Web3", "Smart Contracts"],
         "logoSrc": "/images/projects/dex-logo.png",
         "keyFeatures": [
           "Complete blockchain migration strategy",
           "Real-time testing environment setup",
           "Frontend Web3 integration",
+          "Custom DEX implementation with custom tokenomics and transfer fees",
           "Mainnet deployment and user migration"
         ]
       },
@@ -187,14 +178,8 @@
           "Rebasing-responsive vault with AMPL integration and dual-token rewards (EEFI + OHM)",
           "Automated lending facility with 150% collateralization and TWAP pricing",
           "Rebasing Structured Products - oracle-based index tokens with zero counterparty risk",
-          "Custom Oracle controller (EFBLUEGOLDOracle) with 24-hour rebase cycles and Chainlink integration",
-          "Factory contract system for structured product creation and Uniswap V2 LP initialization",
-          "Dynamic rebase scoring system for minting controls and sophisticated risk management",
           "Automated trading with Uniswap V2/V3 and Balancer V2 integration",
-          "UniswapV2LiquidityManager for LP pair creation and initial funding automation",
-          "90-day time-locked deposits with share tokenization and liquidity management",
           "Loan extensions, partial repayments, and sophisticated liquidation handling",
-          "Role-based access control, multi-signature treasury, and onlyOracle modifiers",
           "Comprehensive fuzzing tests, gas optimization, and exploit prevention mechanisms"
         ]
       },
