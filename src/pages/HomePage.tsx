@@ -21,7 +21,8 @@ const HomePage: React.FC = () => {
           backgroundColor: currentThemeConfig.background,
           color: currentThemeConfig.textPrimary,
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          pt: { xs: 8, md: 10 }
         }}
       >
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
@@ -33,10 +34,7 @@ const HomePage: React.FC = () => {
                 fontSize: { xs: '2.5rem', md: '4rem' },
                 fontWeight: 800,
                 mb: 3,
-                background: `linear-gradient(135deg, #ffffff 0%, ${currentThemeConfig.primary} 100%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: currentThemeConfig.textPrimary,
               }}
             >
               {content.hero.title}
@@ -183,7 +181,7 @@ const HomePage: React.FC = () => {
                 }}
               >
                 <img 
-                  src="/images/logo - !f (orange - no bg).png" 
+                  src="/images/logo - !f (white - no bg).png" 
                   alt="Unforkable" 
                   style={{ 
                     width: '60px', 

@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                 <img 
-                  src="/images/logo - !f (orange - no bg).png" 
+                  src="/images/logo - !f (white - no bg).png" 
                   alt="Unforkable Logo" 
                   className="hero-logo-symbol"
                     style={{ height: '30px' }} 
@@ -250,7 +250,7 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                   <img 
-                    src="/images/logo - !f (orange - no bg).png" 
+                    src="/images/logo - !f (white - no bg).png" 
                     alt="Unforkable" 
                     style={{ 
                       width: '60px', 

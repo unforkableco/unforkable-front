@@ -54,10 +54,10 @@ const Navigation: React.FC = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Avatar
-            src="/images/logo - !f (orange - no bg).png"
+            src="/images/logo - !f (white - no bg).png"
             sx={{ width: 32, height: 32, mr: 1 }}
           />
-          <Typography variant="h6" sx={{ color: '#D4AF37', fontWeight: 700 }}>
+          <Typography variant="h6" sx={{ color: '#FFFFFF', fontWeight: 700 }}>
             Unforkable
           </Typography>
         </Box>
@@ -119,14 +119,14 @@ const Navigation: React.FC = () => {
             onClick={() => navigate('/')}
           >
             <Avatar
-              src="/images/logo - !f (orange - no bg).png"
+              src="/images/logo - !f (white - no bg).png"
               sx={{ width: 40, height: 40, mr: 2 }}
             />
             <Typography
               variant="h5"
               sx={{
                 fontWeight: 800,
-                color: '#D4AF37',
+                color: '#FFFFFF',
                 display: { xs: 'none', sm: 'block' }
               }}
             >

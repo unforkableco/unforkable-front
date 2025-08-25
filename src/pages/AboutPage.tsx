@@ -55,7 +55,7 @@ const AboutPage: React.FC = () => {
               }}
             >
               <img 
-                src="/images/logo - !f (orange - no bg).png" 
+                src="/images/logo - !f (blue).svg" 
                 alt="Unforkable Logo" 
                 style={{ 
                   width: '80%', 
@@ -82,7 +82,7 @@ const AboutPage: React.FC = () => {
             <Typography 
               variant="h5" 
               sx={{ 
-                color: currentThemeConfig.primary,
+                color: '#4682b4',
                 fontWeight: 600,
                 mb: 6
               }}
