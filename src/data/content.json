@@ -264,8 +264,13 @@
     "links": [
       {
         "platform": "linkedin",
-        "url": "https://www.linkedin.com/company/unforkable",
+        "url": "https://www.linkedin.com/company/unforkableco",
         "label": "LinkedIn"
+      },
+      {
+        "platform": "x",
+        "url": "https://x.com/unforkableco",
+        "label": "X"
       }
     ]
   },
@@ -282,6 +287,6 @@
       "title": "Legal",
       "links": ["Terms of Service", "Privacy Policy", "Cookie Policy"]
     },
-    "copyright": "Mentions légales"
+    "copyright": "Legal Notice"
   }
 } 

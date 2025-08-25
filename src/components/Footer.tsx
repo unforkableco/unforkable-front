@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Divider, IconButton } from '@mui/material';
+import { Box, Container, Typography, Grid, Divider, IconButton, SvgIcon, Link } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useContent from '../hooks/useContent';
 
@@ -12,6 +12,13 @@ const Footer: React.FC = () => {
     switch (platform.toLowerCase()) {
       case 'linkedin':
         return <LinkedInIcon />;
+      case 'x':
+        // Simple X glyph using two diagonal lines
+        return (
+          <SvgIcon viewBox="0 0 24 24">
+            <path d="M4 4 L20 20 M20 4 L4 20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+          </SvgIcon>
+        );
       default:
         return null;
     }
@@ -45,6 +52,8 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`footer-social-link footer-social-${link.platform}`}
+                    aria-label={link.label || link.platform}
+                    title={link.label || link.platform}
                     sx={{
                       color: 'text.secondary',
                       '&:hover': {
@@ -72,7 +81,9 @@ const Footer: React.FC = () => {
             fontSize: '0.8rem'
           }}
         >
-          {copyright}
+          <Link href="/legal" color="inherit" underline="hover" aria-label="Legal Notice">
+            {copyright}
+          </Link>
         </Typography>
       </Container>
     </Box>

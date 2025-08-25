@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
+import LegalPage from './pages/LegalPage';
 
 const AppContent: React.FC = () => {
   const { currentTheme, currentThemeConfig } = useTheme();
@@ -35,6 +36,7 @@ const AppContent: React.FC = () => {
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/legal" element={<LegalPage />} />
             </Routes>
           </Box>
           
