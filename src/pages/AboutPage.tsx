@@ -166,26 +166,63 @@ const AboutPage: React.FC = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  p: 4,
-                  borderRadius: 3,
-                  backgroundColor: 'transparent',
-                  border: `1px solid ${currentThemeConfig.primary}`,
-                  position: 'relative',
-                }}
-              >
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    lineHeight: 1.8,
-                    color: currentThemeConfig.textSecondary,
-                    fontSize: '1.1rem'
+              {Array.isArray(content.about.storySections) && content.about.storySections.length > 0 ? (
+                <Grid container spacing={2}>
+                  {content.about.storySections.map((section, idx) => (
+                    <Grid item xs={12} key={idx}>
+                      <Box
+                        sx={{
+                          p: 3,
+                          borderRadius: 2,
+                          background: `linear-gradient(135deg, ${currentThemeConfig.paper}E6 0%, ${currentThemeConfig.background}CC 100%)`,
+                          border: `1px solid ${currentThemeConfig.primary}33`,
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            borderColor: currentThemeConfig.secondary,
+                            transform: 'translateY(-3px)'
+                          }
+                        }}
+                      >
+                        {section.title && (
+                          <Typography variant="subtitle2" sx={{ color: currentThemeConfig.primary, fontWeight: 700, mb: 1 }}>
+                            {section.title}
+                          </Typography>
+                        )}
+                        <Typography 
+                          variant="body1" 
+                          sx={{ 
+                            lineHeight: 1.7,
+                            color: currentThemeConfig.textSecondary
+                          }}
+                        >
+                          {section.text || (section as unknown as string)}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <Box
+                  sx={{
+                    p: 4,
+                    borderRadius: 3,
+                    backgroundColor: 'transparent',
+                    border: `1px solid ${currentThemeConfig.primary}`,
+                    position: 'relative',
                   }}
                 >
-                  {content.about.description}
-                </Typography>
-              </Box>
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      lineHeight: 1.8,
+                      color: currentThemeConfig.textSecondary,
+                      fontSize: '1.1rem'
+                    }}
+                  >
+                    {content.about.description}
+                  </Typography>
+                </Box>
+              )}
             </Grid>
           </Grid>
         </Container>

@@ -195,11 +195,13 @@ const HomePage: React.FC = () => {
               {/* Primary Tech Nodes - Main technologies */}
               {[
                 { tech: 'Substrate', pos: { top: '15%', left: '20%' }, delay: '0s', category: 'blockchain' },
-                { tech: 'Solidity', pos: { top: '20%', right: '20%' }, delay: '0.8s', category: 'smart-contract' },
+                { tech: 'Smart contracts', pos: { top: '20%', right: '20%' }, delay: '0.8s', category: 'smart-contract' },
                 { tech: 'DeFi', pos: { bottom: '35%', left: '15%' }, delay: '1.6s', category: 'protocol' },
                 { tech: 'AI Agents', pos: { bottom: '30%', right: '15%' }, delay: '2.4s', category: 'ai' },
-                { tech: 'TypeScript', pos: { bottom: '15%', left: '25%' }, delay: '3.2s', category: 'frontend' },
-                { tech: 'Rust', pos: { top: '8%', left: '75%' }, delay: '4s', category: 'systems' },
+                { tech: 'Bots', pos: { bottom: '15%', left: '25%' }, delay: '3.2s', category: 'automation' },
+                { tech: 'Layer 2', pos: { top: '10%', left: '45%' }, delay: '4s', category: 'systems' },
+                { tech: 'Ethereum', pos: { top: '23%', left: '15%' }, delay: '6s', category: 'systems' },
+                { tech: 'Bittensor', pos: { top: '60%', left: '65%' }, delay: '8s', category: 'systems' },
               ].map((node, index) => (
                 <Box
                   key={index}

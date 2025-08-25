@@ -13,6 +13,7 @@ export interface Content {
     overline: string;
     title: string;
     description: string;
+    storySections?: { title: string; text: string }[];
     benefits: string[];
   };
   services: {
