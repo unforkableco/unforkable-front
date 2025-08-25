@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Divider, IconButton, SvgIcon, Link } from '@mui/material';
+import { Box, Container, Typography, Grid, Divider, IconButton, SvgIcon, Link as MuiLink } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import useContent from '../hooks/useContent';
 
@@ -81,9 +82,9 @@ const Footer: React.FC = () => {
             fontSize: '0.8rem'
           }}
         >
-          <Link href="/legal" color="inherit" underline="hover" aria-label="Legal Notice">
+          <MuiLink component={RouterLink} to="/legal" color="inherit" underline="hover" aria-label="Mentions légales">
             {copyright}
-          </Link>
+          </MuiLink>
         </Typography>
       </Container>
     </Box>
